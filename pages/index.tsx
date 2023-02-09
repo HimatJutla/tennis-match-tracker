@@ -1,12 +1,44 @@
+import BadDataState from '@/components/badDataState/badDataState';
 import { mongoDbCLientConnectionUrl } from '@/consts/mongodb-client-url-connect';
 import { Match } from '@/interfaces/match.interface';
 import { IndexPagePropsInterface } from '@/interfaces/props/index-page-props.interface';
 import { MongoClient } from 'mongodb';
-import Head from 'next/head'
+import Head from 'next/head';
+import styled from 'styled-components';
+
+
+const IndexPageStyling = styled.div`
+  .index-content-container {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    .match-list-container {
+      width: 60%;
+    }
+    .player-details-container {
+      width: 60%;
+    }
+  }
+`;
 
 export default function Home({matches, players}: IndexPagePropsInterface) {
 
   console.log(matches, players);
+
+  if (!matches || !players) {
+    return (
+      <>
+        <Head>
+          <title>Tennis Match Tracker</title>
+          <meta name="description" content="Track your tennis matches" />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div>NAVBAR</div>
+        <BadDataState badDataItemsString="matches and players"/>
+      </>
+    )
+  }
 
   return (
     <>
@@ -16,6 +48,20 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <IndexPageStyling>
+          <div>Navbar</div>
+          <div
+            className="index-content-container">
+            <div
+              className="match-list-container">
+              MATCH LIST
+            </div>
+            <div
+              className="player-details-container">
+              PLAYER
+            </div>
+          </div>
+      </IndexPageStyling>
     </>
   )
 }
@@ -55,7 +101,8 @@ export async function getStaticProps() {
           losses: player.losses,
           image: player.image,
           country: player.country,
-          city: player.city
+          city: player.city,
+          email: player.email
         }))
       },
       revalidate: 60,
