@@ -1,8 +1,9 @@
+import { Player } from "./player.interface";
 export interface Match {
-    _id: string;
-    playerOne: any;
-    playerTwo: any;
-    winner: any;
+    id: string;
+    playerOne: Player;
+    playerTwo: Player;
+    winner: Player;
     date: string;
     playerOneScore: string;
     playerTwoScore: string;
