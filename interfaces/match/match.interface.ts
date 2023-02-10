@@ -1,5 +1,5 @@
 import { MatchScore } from "./match-score.interface";
-import { Player } from "./player.interface";
+import { Player } from "../player/player.interface";
 export interface Match {
     id: string;
     playerOne: Player;

@@ -1,4 +1,4 @@
-import { EmptyStateComponentProps } from '@/interfaces/props/empty-state-component-props.interface';
+import { EmptyStateComponentProps } from '@/interfaces/props/component-props/empty-state-component-props.interface';
 import Link from "next/link";
 import styled from 'styled-components';
 

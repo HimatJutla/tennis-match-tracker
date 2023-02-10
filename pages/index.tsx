@@ -1,9 +1,10 @@
 import BadDataState from '@/components/badDataState/badDataState';
 import HeadMetaData from '@/components/headMetaData/headMetaData';
 import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracker-footer';
+import TennisMatchTrackerHeader from '@/components/ui/header/tennis-match-tracker-header';
 import { mongoDbCLientConnectionUrl } from '@/consts/mongodb-client-url-connect';
-import { Match } from '@/interfaces/match.interface';
-import { IndexPagePropsInterface } from '@/interfaces/props/index-page-props.interface';
+import { Match } from '@/interfaces/match/match.interface';
+import { IndexPagePropsInterface } from '@/interfaces/props/page-props/index-page-props.interface';
 import { MongoClient } from 'mongodb';
 import styled from 'styled-components';
 
@@ -12,15 +13,15 @@ const IndexPageStyling = styled.div`
   .index-content-container {
     display: flex;
     align-items: center;
-    height: 95vh;
+    height: 85vh;
     .bad-data-state-container {
       width: 100%;
     }
     .match-list-container {
       width: 60%;
     }
-    .player-details-container {
-      width: 60%;
+    .player-rankings-container {
+      width: 40%;
     }
   }
 `;
@@ -34,7 +35,10 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
       <>
         <HeadMetaData />
         <div>NAVBAR</div>
-        <BadDataState badDataItemsString="matches and players"/>
+        <div
+          className="bad-data-state-container">
+          <BadDataState badDataItemsString="matches and players"/>
+        </div>
       </>
     )
   }
@@ -42,8 +46,9 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
   return (
     <>
       <HeadMetaData />
+      <TennisMatchTrackerHeader />
+      <div>Navbar</div>
       <IndexPageStyling>
-          <div>Navbar</div>
             <div
               className="index-content-container">
               <div
@@ -51,12 +56,12 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
                 MATCH LIST
               </div>
               <div
-                className="player-details-container">
-                PLAYER
+                className="player-rankings-container">
+                PLAYER RANKINGS HERE
               </div>
             </div>
-          <TennisMatchTrackerFooter />
       </IndexPageStyling>
+      <TennisMatchTrackerFooter />
     </>
   )
 }

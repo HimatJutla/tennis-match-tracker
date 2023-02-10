@@ -1,4 +1,4 @@
-import { BadDataStateComponentProps } from '@/interfaces/props/bad-data-state-component-props.interface';
+import { BadDataStateComponentProps } from '@/interfaces/props/component-props/bad-data-state-component-props.interface';
 import styled from 'styled-components';
 
 const BadDataStateStyling = styled.div`

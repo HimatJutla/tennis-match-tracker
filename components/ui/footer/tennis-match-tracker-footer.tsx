@@ -6,6 +6,7 @@ const FooterStyling = styled.div`
     justify-content: space-between;
     width: 100%;
     padding: 2%;
+    height: 5vh;
 `;
 
 export default function TennisMatchTrackerFooter() {
