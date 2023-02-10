@@ -1,9 +1,10 @@
 import BadDataState from '@/components/badDataState/badDataState';
+import HeadMetaData from '@/components/headMetaData/headMetaData';
+import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracker-footer';
 import { mongoDbCLientConnectionUrl } from '@/consts/mongodb-client-url-connect';
 import { Match } from '@/interfaces/match.interface';
 import { IndexPagePropsInterface } from '@/interfaces/props/index-page-props.interface';
 import { MongoClient } from 'mongodb';
-import Head from 'next/head';
 import styled from 'styled-components';
 
 
@@ -11,7 +12,10 @@ const IndexPageStyling = styled.div`
   .index-content-container {
     display: flex;
     align-items: center;
-    height: 100vh;
+    height: 95vh;
+    .bad-data-state-container {
+      width: 100%;
+    }
     .match-list-container {
       width: 60%;
     }
@@ -28,12 +32,7 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
   if (!matches || !players) {
     return (
       <>
-        <Head>
-          <title>Tennis Match Tracker</title>
-          <meta name="description" content="Track your tennis matches" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+        <HeadMetaData />
         <div>NAVBAR</div>
         <BadDataState badDataItemsString="matches and players"/>
       </>
@@ -42,25 +41,21 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
 
   return (
     <>
-      <Head>
-        <title>Tennis Match Tracker</title>
-        <meta name="description" content="Track your tennis matches" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <HeadMetaData />
       <IndexPageStyling>
           <div>Navbar</div>
-          <div
-            className="index-content-container">
             <div
-              className="match-list-container">
-              MATCH LIST
+              className="index-content-container">
+              <div
+                className="match-list-container">
+                MATCH LIST
+              </div>
+              <div
+                className="player-details-container">
+                PLAYER
+              </div>
             </div>
-            <div
-              className="player-details-container">
-              PLAYER
-            </div>
-          </div>
+          <TennisMatchTrackerFooter />
       </IndexPageStyling>
     </>
   )
@@ -87,19 +82,19 @@ export async function getStaticProps() {
           playerTwo: match.playerTwo,
           winner: match.winner,
           date: match.date,
-          playerOneScore: match.playerOneScore,
-          playerTwoScore: match.playerTwoScore,
+          score: match.score,
+          city: match.city,
           location: match?.location ? match?.location : 'No location was submitted'
         })),
         players: players.map((player) => ({
           id: player._id.toString(),
           firstName: player.firstName,
           lastName: player.lastName,
-          description: player.description,
+          bio: player.bio,
           dateOfBirth: player.dateOfBirth,
           wins: player.wins,
           losses: player.losses,
-          image: player.image,
+          // image: player.image,
           country: player.country,
           city: player.city,
           email: player.email
