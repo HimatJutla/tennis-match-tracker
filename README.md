@@ -1,5 +1,26 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## ROADMAP
+
+This is my first individual project using React and NextJS. It will become a robust app as it matures. Please read my roadmap steps below:
+
+# Phase 1: MVP
+Use React and NextJS in conjunction with MongoDB atlas to create an app that tracks tennis matches by allowing a user to create a match, update a match and delete a match as well as allow a user to create, update and delete players. This will be a very simple app that shows player rankings, allows users to find players in their city, track their matches and view match lists and will allow me to get a strong data structure together.
+
+# Phase 2: ROBUST APP COMPLETION
+- Scrap the MongoDB atlas DB and create a more robust BE with NodeJS and Postgres. This will allow me to remove more complex update logic for cross functional tables in the FE
+- Add auth to the project
+- Refactor front end code to use the ContextAPI to manage and keep state up to date rather than leveraging getStaticProps on each page (should only be called on index)
+- Implement Higher Order Components for header and footer, as well as for state passing
+- Style the app to look professional, phase 1 is just a quick styling in order to get a functional app
+- Use Cypress or JEST to unit test and e2e test the entire app and its flows to ensure confidence on bugs
+
+# Phase 3: GET USERS
+- Get all my friends on the app so we can start collecting and displaying data
+- Talk to the city to allow for public courts to be booked via my web platform, then proceed to adding that feature to the app (eliminate all the tennis beef at public courts due to wait times and people going over time; this has always been a recipe for chaos and its about time someone automates it)
+- Implement Redis as a caching middleware to improve performance
+
+
 ## Getting Started
 
 First, run the development server:
