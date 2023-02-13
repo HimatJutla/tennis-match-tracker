@@ -8,6 +8,7 @@ import { mongoDbCLientConnectionUrl } from '@/consts/mongodb-client-url-connect'
 import { Match } from '@/interfaces/match/match.interface';
 import { MatchPagesProps } from '@/interfaces/props/page-props/match-pages-props.interface';
 import { MongoClient } from 'mongodb';
+import router from 'next/router';
 import styled from 'styled-components';
 
 
@@ -16,8 +17,21 @@ const MatchPageStyling = styled.div`
 
 export default function NewMatchPage({players}: MatchPagesProps) {
 
-    const handleOnMatchFormCompleted = (matchData: Match)=> {
-        console.log('match', matchData);
+    const handleOnMatchFormCompleted = async(enteredMatchData: Match): Promise<void> => {
+        try {
+          const matchAddedResponse = await fetch('api/new-match', {
+            method: 'POST',
+            body: JSON.stringify(enteredMatchData),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          const data = await matchAddedResponse.json();
+        } catch(error) {
+          console.error(error);
+        }
+        router.push('/');
+
     }
 
   return (
@@ -26,8 +40,7 @@ export default function NewMatchPage({players}: MatchPagesProps) {
       <TennisMatchTrackerHeader />
       <div>Navbar</div>
       <MatchPageStyling>
-        {players?.length > 1 ? <MatchesForm players={players} onMatchFormComplete={handleOnMatchFormCompleted}/> : <EmptyState emptyItem="player" navLink="/" />
-        }
+        {players?.length > 1 ? <MatchesForm players={players} onMatchFormComplete={handleOnMatchFormCompleted}/> : <EmptyState emptyItem="player" navLink="/" />}
       </MatchPageStyling>
       <TennisMatchTrackerFooter />
     </>

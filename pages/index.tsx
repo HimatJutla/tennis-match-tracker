@@ -29,8 +29,6 @@ const IndexPageStyling = styled.div`
 
 export default function Home({matches, players}: IndexPagePropsInterface) {
 
-  console.log(matches, players);
-
   if (!matches || !players) {
     return (
       <>

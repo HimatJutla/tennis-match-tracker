@@ -11,8 +11,6 @@ const EmptyStateStyling = styled.div`
 
 export default function EmptyState({emptyItem, navLink}: EmptyStateComponentProps): any {
 
-  console.log(emptyItem, navLink);
-
   if (emptyItem) {
     return (
         <>

@@ -1,4 +1,5 @@
 export interface Set {
+    setNumber: number;
     playerOneScore: number;
     playerTwoScore: number;
 }

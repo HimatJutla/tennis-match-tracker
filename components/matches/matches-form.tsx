@@ -1,9 +1,11 @@
 import { Player } from '@/interfaces/player/player.interface';
+import { Set } from '@/interfaces/match/match-score.interface';
 import { MatchFormComponentProps } from '@/interfaces/props/component-props/match-form-component-props.interface';
 import { useEffect, useState } from 'react';
 import PlayerList from '../players/playerList';
 import styled from 'styled-components';
 import SetInput from './sets/set-input';
+import { MatchScore } from '@/interfaces/match/match-score.interface';
 
 const MatchesFormStyling = styled.div`
 `;
@@ -14,32 +16,22 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
     const [playerOne, setPlayerOne] = useState(matchToBeUpdated ? matchToBeUpdated.playerOne : players[0]);
     const [playerTwo, setPlayerTwo] = useState(matchToBeUpdated ? matchToBeUpdated.playerTwo : players[1]);
     const [displaySetInputs, setDisplaySetInputs] = useState(false);
-    const [winner, setWinner] = useState(matchToBeUpdated ? matchToBeUpdated.winner : '');
     const [numberOfSets, setNumberOfSets] = useState(matchToBeUpdated ? matchToBeUpdated.score.numberOfSets : 1);
     const [date, setDate] = useState(matchToBeUpdated ? matchToBeUpdated.date : '');
-    const [score, setScore] = useState(matchToBeUpdated ? matchToBeUpdated.score : '');
+    const [score, setScore] = useState(matchToBeUpdated ? matchToBeUpdated.score : {numberOfSets: 1, sets: []});
     const [city, setCity] = useState(matchToBeUpdated ? matchToBeUpdated.city : '');
     const [location, setLocation] = useState(matchToBeUpdated ? matchToBeUpdated.location : '');
     const [image, setImage] = useState(matchToBeUpdated ? matchToBeUpdated.image : '');
 
     // Setter Handlers
-    // const onSetPlayerOneHandler = (event: any): void => {
-    //     setPlayerOne(event.target.value);
-    // }
-    // const onSetPlayerTwoHandler = (event: any): void => {
-    //     setPlayerTwo(event.target.value);
-    // }
-    // const onSetWinnerHandler = (event: any): void => {
-    //     setWinner(event.target.value);
-    // }
     const onSetDateHandler = (event: any): void => {
         setDate(event.target.value);
     }
     const onSetNumberOfSetsHandler = (event: any): void => {
         setNumberOfSets(event.target.value);
     }
-    const onSetScoreHandler = (event: any): void => {
-        setScore(event.target.value);
+    const onSetScoreHandler = (score: MatchScore): void => {
+        setScore(score);
     }
     const onSetCityHandler = (event: any): void => {
         setCity(event.target.value);
@@ -47,14 +39,11 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
     const onSetLocationHandler = (event: any): void => {
         setLocation(event.target.value);
     }
-
     const handlePlayerPassed = async (playerToBeUpdated: Player, playerNumber: number) => {
-        console.log(playerToBeUpdated);
         playerNumber == 1 ? setPlayerOne(playerToBeUpdated) : setPlayerTwo(playerToBeUpdated);
     }
 
     const setShouldSetsBeDisplayedHandler = () => {
-        console.log(playerOne, playerTwo, numberOfSets);
         if (playerOne && playerTwo && numberOfSets > 0) {
             setDisplaySetInputs(true);
             return;
@@ -62,10 +51,31 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
         setDisplaySetInputs(false);
     }
 
-    const submitMatchHandler = (event: any): void => {
-        event.preventDefault();
-        const matchData = {};
-       onMatchFormComplete(matchData);
+    // NTS: Clean this logic up - way too long, can be condensed with maps and filters
+    const handleScoreChange = (playerOneScore: number, playerTwoScore: number, setNumber: number) => {
+        const formattedSet = {
+            setNumber: setNumber,
+            playerOneScore: playerOneScore,
+            playerTwoScore: playerTwoScore,
+        }
+        if (!score?.sets.length) {
+            onSetScoreHandler({numberOfSets: numberOfSets, sets: [formattedSet]});
+            return;
+        }
+        let newSetScore = score?.sets;
+        score?.sets.forEach((set: Set, index: number): any => {
+            if (set.setNumber === formattedSet.setNumber) {
+                newSetScore[index] = formattedSet;
+                return;
+            }
+        });
+        const setNumberExistsInCurrentScore = score?.sets.find((set: Set) => {
+            return set.setNumber === formattedSet.setNumber;
+        });
+        if (!setNumberExistsInCurrentScore) {
+            newSetScore.push(formattedSet);
+        }
+        onSetScoreHandler({numberOfSets: numberOfSets, sets: [...newSetScore]});
     }
 
     // Utils
@@ -81,10 +91,43 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
         reader.readAsDataURL(file)
     }
 
+    const verifyIfPlayerOneWins = (set: Set): boolean => {
+        return set.playerOneScore > set.playerTwoScore;
+    }
+
+    const determineWinner = (score: MatchScore): Player => {
+        let playerOneSetWins = 0;
+        let playerTwoSetWins = 0;
+        score.sets.forEach((set: Set) => {
+            const playerOneWins = verifyIfPlayerOneWins(score?.sets[0]);
+            playerOneWins ? playerOneSetWins++ : playerTwoSetWins++;
+        });
+        if (playerOneSetWins > playerTwoSetWins) {
+            return playerOne;
+        }
+        return playerTwo;
+    }
+
     // Effects
     useEffect(() => {
         setShouldSetsBeDisplayedHandler();
     }, [playerOne, playerTwo, numberOfSets]);
+
+    // Submit
+    const submitMatchHandler = (event: any): void => {
+        event.preventDefault();
+        const matchData = {
+            playerOne: playerOne,
+            playerTwo: playerTwo,
+            score: score,
+            winner:  determineWinner(score),
+            date: date,
+            city: city,
+            location: location,
+            image: image
+        };
+       onMatchFormComplete(matchData);
+    }
 
     return (
         <MatchesFormStyling>
@@ -103,7 +146,7 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
 
                 {displaySetInputs &&
                     Array.from({length: numberOfSets}).map((set, index) => (
-                        <SetInput key={index + 1} playerOne={playerOne} playerTwo={playerTwo} setNumber={index + 1}/>
+                        <SetInput key={index + 1} playerOne={playerOne} playerTwo={playerTwo} setNumber={index + 1} passScoreUpToParent={handleScoreChange}/>
                     ))
                 }
                 <div>
@@ -120,11 +163,11 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
                 </div>
                 <div>
                     {image ? (
-                        <img src={image} />
+                        <img width="300" src={image} />
                     ) : (
                         <div>
                             <label htmlFor='image'>Upload Match Image</label>
-                            <input id='image' type='file' required onChange={imageUpload => convertImageToBase64Handler(imageUpload)} />
+                            <input id='image' type='file' onChange={imageUpload => convertImageToBase64Handler(imageUpload)} />
                         </div>
                     )}
                 </div>

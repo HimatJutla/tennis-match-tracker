@@ -4,4 +4,5 @@ export interface SetInputComponentPropsInterface {
     playerOne: Player;
     playerTwo: Player;
     setNumber: number;
+    passScoreUpToParent: Function;
 }
