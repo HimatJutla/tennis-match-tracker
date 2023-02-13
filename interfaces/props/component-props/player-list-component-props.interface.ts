@@ -5,4 +5,6 @@ export interface PlayerListComponentPropsInterface {
     labelText?: string;
     selectId?: string;
     passCurrentPlayerToParent?: Function;
+    playerNumber?: number;
+    defaultPlayer?: Player;
 }

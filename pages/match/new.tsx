@@ -1,3 +1,5 @@
+import BadDataState from '@/components/badDataState/badDataState';
+import EmptyState from '@/components/emptyState/emptyState';
 import HeadMetaData from '@/components/headMetaData/headMetaData';
 import MatchesForm from '@/components/matches/matches-form';
 import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracker-footer';
@@ -24,7 +26,8 @@ export default function NewMatchPage({players}: MatchPagesProps) {
       <TennisMatchTrackerHeader />
       <div>Navbar</div>
       <MatchPageStyling>
-        <MatchesForm players={players} onMatchFormComplete={handleOnMatchFormCompleted}/>
+        {players?.length > 1 ? <MatchesForm players={players} onMatchFormComplete={handleOnMatchFormCompleted}/> : <EmptyState emptyItem="player" navLink="/" />
+        }
       </MatchPageStyling>
       <TennisMatchTrackerFooter />
     </>

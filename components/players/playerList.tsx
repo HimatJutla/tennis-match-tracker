@@ -1,19 +1,27 @@
 import { Player } from '@/interfaces/player/player.interface';
 import { PlayerListComponentPropsInterface } from '@/interfaces/props/component-props/player-list-component-props.interface';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 
 const PlayersListStyling = styled.div`
 `;
 
-export default function PlayerList({passedPlayers, labelText, selectId, passCurrentPlayerToParent}: PlayerListComponentPropsInterface) {
+export default function PlayerList({passedPlayers, labelText, selectId, passCurrentPlayerToParent, playerNumber, defaultPlayer}: PlayerListComponentPropsInterface) {
+
+    const [currentPlayer, setCurrentPlayer] = useState(defaultPlayer ? defaultPlayer : null);
 
     const handleSetCurrentPlayer = (event: any) => {
-        if (!passCurrentPlayerToParent) {
+        setCurrentPlayer(JSON.parse(event.target.value));
+    };
+
+    useEffect(() => {
+        if (!passCurrentPlayerToParent || !playerNumber || !currentPlayer) {
             return;
         }
-        passCurrentPlayerToParent(JSON.parse(event.target.value));
-    };
+        passCurrentPlayerToParent(currentPlayer, playerNumber);
+    
+    }, [currentPlayer]);
 
     if (passedPlayers?.length) {
         return (
