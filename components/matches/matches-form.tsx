@@ -2,6 +2,7 @@ import { Player } from '@/interfaces/player/player.interface';
 import { MatchFormComponentProps } from '@/interfaces/props/component-props/match-form-component-props.interface';
 import { useState } from 'react';
 import PlayerList from '../players/playerList';
+import styled from 'styled-components';
 
 const MatchesFormStyling = styled.div`
 `;
@@ -72,11 +73,9 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
             <form
                 onSubmit={submitMatchHandler}>
                 <div>
-                    <label htmlFor='playerOne'>Player One</label>
                     <PlayerList passedPlayers={players} selectId='playerOne' labelText="Player One" passCurrentPlayerToParent={handlePlayerPassed}></PlayerList>
                 </div>
                 <div>
-                    <label htmlFor='playerTwo'>Player Two</label>
                     <PlayerList passedPlayers={players} selectId='playerTwo' labelText="Player Two" passCurrentPlayerToParent={handlePlayerPassed}></PlayerList>
                 </div>
                 {/* do score here - maybe calc winner based on score */}
@@ -106,9 +105,8 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
                         </div>
                     )}
                 </div>
-                <div className={NewPlayer.actions}>
-
-                    <button>{props.playerToUpdate ? `Update ${props.playerToUpdate.fullName}` : 'Add New Player'}</button>
+                <div>
+                    <button type="submit">{matchToBeUpdated ? `Update Match` : 'Add Match'}</button>
                 </div>
             </form>
         </MatchesFormStyling>

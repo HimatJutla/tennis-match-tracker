@@ -2,6 +2,7 @@ import BadDataState from '@/components/badDataState/badDataState';
 import HeadMetaData from '@/components/headMetaData/headMetaData';
 import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracker-footer';
 import TennisMatchTrackerHeader from '@/components/ui/header/tennis-match-tracker-header';
+import Navbar from '@/components/ui/navbar/tennis-match-tracker-navbar';
 import { mongoDbCLientConnectionUrl } from '@/consts/mongodb-client-url-connect';
 import { Match } from '@/interfaces/match.interface';
 import { IndexPagePropsInterface } from '@/interfaces/props/page-props/index-page-props.interface';
@@ -34,7 +35,7 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
     return (
       <>
         <HeadMetaData />
-        <div>NAVBAR</div>
+        <Navbar />
         <div
           className="bad-data-state-container">
           <BadDataState badDataItemsString="matches and players"/>
@@ -47,7 +48,7 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
     <>
       <HeadMetaData />
       <TennisMatchTrackerHeader />
-      <div>Navbar</div>
+      <Navbar />
       <IndexPageStyling>
             <div
               className="index-content-container">

@@ -16,7 +16,7 @@ export default function TennisMatchTrackerFooter() {
                 HimmyJ Productions
             </div>
             <div>
-                GET YOUR GAME ON!
+                TRACK YOUR MATCHES AND FIND YOUR RIVALS
             </div>
             <div>
                 Copyright @HimmyJ Productions 2023

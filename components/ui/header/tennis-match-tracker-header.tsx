@@ -23,7 +23,7 @@ export default function TennisMatchTrackerHeader() {
                 TENNIS MATCH TRACKER
             </div>
             <div>
-                PLAY YOUR GAME!
+                TRACK YOUR MATCHES AND FIND YOUR RIVALS
             </div>
         </HeaderStyling>
     )
