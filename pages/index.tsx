@@ -3,7 +3,7 @@ import HeadMetaData from '@/components/headMetaData/headMetaData';
 import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracker-footer';
 import TennisMatchTrackerHeader from '@/components/ui/header/tennis-match-tracker-header';
 import { mongoDbCLientConnectionUrl } from '@/consts/mongodb-client-url-connect';
-import { Match } from '@/interfaces/match/match.interface';
+import { Match } from '@/interfaces/match.interface';
 import { IndexPagePropsInterface } from '@/interfaces/props/page-props/index-page-props.interface';
 import { MongoClient } from 'mongodb';
 import styled from 'styled-components';
