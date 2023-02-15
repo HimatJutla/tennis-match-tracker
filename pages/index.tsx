@@ -1,10 +1,10 @@
 import BadDataState from '@/components/badDataState/badDataState';
 import HeadMetaData from '@/components/headMetaData/headMetaData';
+import MatchesList from '@/components/matches/matchesList';
 import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracker-footer';
 import TennisMatchTrackerHeader from '@/components/ui/header/tennis-match-tracker-header';
 import Navbar from '@/components/ui/navbar/tennis-match-tracker-navbar';
 import { mongoDbCLientConnectionUrl } from '@/consts/mongodb-client-url-connect';
-import { Match } from '@/interfaces/match.interface';
 import { IndexPagePropsInterface } from '@/interfaces/props/page-props/index-page-props.interface';
 import { MongoClient } from 'mongodb';
 import styled from 'styled-components';
@@ -52,7 +52,7 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
               className="index-content-container">
               <div
                 className="match-list-container">
-                MATCH LIST
+                <MatchesList matches={matches}/>
               </div>
               <div
                 className="player-rankings-container">
