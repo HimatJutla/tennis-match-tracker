@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 const HeaderStyling = styled.div`
+    padding: 2% 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 2%;
-    height: 10vh;
+    height: 5vh;
     .header-logo-and-title {
         display: flex;
         align-items: center;

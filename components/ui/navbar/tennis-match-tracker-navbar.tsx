@@ -5,7 +5,7 @@ const NavbarComponentStyling = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  padding: 2%;
+  padding: 0 5% 0 5%;
   margin-bottom: 3%;
   .navbar-items-container {
     width: 40%;

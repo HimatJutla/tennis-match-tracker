@@ -11,18 +11,26 @@ import styled from 'styled-components';
 
 
 const IndexPageStyling = styled.div`
+  padding: 0 5% 0 5%;
+  .footer-container {
+    position: fixed;
+    bottom: 0;
+    width: 91%;
+  }
   .index-content-container {
     display: flex;
-    align-items: center;
+    align-items: start;
     height: 85vh;
     .bad-data-state-container {
       width: 100%;
     }
     .match-list-container {
-      width: 60%;
+      width: 65%;
+      padding-right: 1.5%;
     }
     .player-rankings-container {
-      width: 40%;
+      width: 35%;
+      padding-left: 1.5%;
     }
   }
 `;
@@ -47,9 +55,6 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
       <HeadMetaData />
       <TennisMatchTrackerHeader />
       <Navbar />
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
       <IndexPageStyling>
             <div
               className="index-content-container">
@@ -62,8 +67,10 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
                 PLAYER RANKINGS HERE
               </div>
             </div>
+            <div className="footer-container">
+              <TennisMatchTrackerFooter />
+            </div>
       </IndexPageStyling>
-      <TennisMatchTrackerFooter />
     </>
   )
 }
@@ -91,7 +98,8 @@ export async function getStaticProps() {
           date: match.date,
           score: match.score,
           city: match.city,
-          location: match?.location ? match?.location : 'No location was submitted'
+          location: match?.location ? match?.location : 'No location submitted',
+          image: match?.image ? match.image : null
         })),
         players: players.map((player) => ({
           id: player._id.toString(),

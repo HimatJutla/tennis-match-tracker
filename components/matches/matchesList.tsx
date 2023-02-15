@@ -5,7 +5,6 @@ import EmptyState from '../emptyState/emptyState';
 import MatchCard from './match-card';
 
 const MatchListStyling = styled.div`
-  padding: 2%;
   margin-bottom: 3%;
   .matches-list-title-block {
     margin-bottom: 4%;
@@ -31,7 +30,7 @@ export default function MatchesList({matches}: MatchListComponentPropsInterface)
         <div
           className="matches-list-title-block">MOST RECENT MATCHES:</div>
         <div
-          className="matches-container">
+          className="matches-container grid grid-cols-3 gap-3">
           {matches.map((match: Match) => (
             <MatchCard key={match?.id} match={match}/>
           ))}
