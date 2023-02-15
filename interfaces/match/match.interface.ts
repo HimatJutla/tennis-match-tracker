@@ -9,5 +9,5 @@ export interface Match {
     score: MatchScore;
     city: string;
     location?: string;
-    image?: any; // NTS, change this when you know what data type exactly mongo uses with image
+    image?: string;
 }

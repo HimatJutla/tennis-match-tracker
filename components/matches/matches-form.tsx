@@ -79,13 +79,13 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
     }
 
     // Utils
-    const convertImageToBase64Handler = (imageUpload: any) => {
-        const file = imageUpload.target.files[0];
+    const convertImageToBase64Handler = (e: any) => {
+        const file = e.target.files[0];
         const reader = new FileReader();
 
         reader.onloadend = () => {
             if (reader.result) {
-                setImage(reader.result.toString());
+                setImage(reader?.result.toString());
             }
         };
         reader.readAsDataURL(file)
@@ -120,7 +120,7 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
             playerOne: playerOne,
             playerTwo: playerTwo,
             score: score,
-            winner:  determineWinner(score),
+            winner: determineWinner(score),
             date: date,
             city: city,
             location: location,
@@ -167,7 +167,7 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
                     ) : (
                         <div>
                             <label htmlFor='image'>Upload Match Image</label>
-                            <input id='image' type='file' onChange={imageUpload => convertImageToBase64Handler(imageUpload)} />
+                            <input id='image' type='file' onChange={e => convertImageToBase64Handler(e)} />
                         </div>
                     )}
                 </div>

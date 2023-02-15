@@ -25,7 +25,7 @@ export default function SetInput({playerOne, playerTwo, setNumber, passScoreUpTo
 
     // Effects
     useEffect(() => {
-        if (playerOneScore && playerTwoScore && setNumber) {
+        if ((playerOneScore || playerTwoScore) && setNumber) {
             passScoreUpToParent(playerOneScore, playerTwoScore, setNumber);
         }
     }, [playerOneScore, playerTwoScore]);
@@ -35,7 +35,6 @@ export default function SetInput({playerOne, playerTwo, setNumber, passScoreUpTo
         return (
             <>
                 <SetInputStyling>
-                {/* <form> */}
                     <label htmlFor={'set'+setNumber}>Set {setNumber}</label>
                     <div
                         className="set-input-block">
@@ -50,7 +49,6 @@ export default function SetInput({playerOne, playerTwo, setNumber, passScoreUpTo
                                 <input type='number' min="0" max="7" required id='playerTwoScore' value={playerTwoScore} onChange={onSetPlayerTwoScoreHandler} />
                             </div>
                     </div>
-                {/* </form> */}
                 </SetInputStyling>
             </>
           )

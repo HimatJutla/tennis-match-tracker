@@ -17,9 +17,9 @@ const MatchPageStyling = styled.div`
 
 export default function NewMatchPage({players}: MatchPagesProps) {
 
-    const handleOnMatchFormCompleted = async(enteredMatchData: Match): Promise<void> => {
+    const handleOnMatchFormCompleted = async(enteredMatchData: Match): Promise<any> => {
         try {
-          const matchAddedResponse = await fetch('api/new-match', {
+          const matchAddedResponse = await fetch('../api/match/new', {
             method: 'POST',
             body: JSON.stringify(enteredMatchData),
             headers: {
@@ -27,6 +27,7 @@ export default function NewMatchPage({players}: MatchPagesProps) {
             },
           });
           const data = await matchAddedResponse.json();
+          console.log(data);
         } catch(error) {
           console.error(error);
         }
