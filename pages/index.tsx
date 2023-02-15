@@ -47,6 +47,9 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
       <HeadMetaData />
       <TennisMatchTrackerHeader />
       <Navbar />
+      <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
       <IndexPageStyling>
             <div
               className="index-content-container">
