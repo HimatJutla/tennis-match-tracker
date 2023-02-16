@@ -6,9 +6,6 @@ import MatchCard from './match-card';
 
 const MatchListStyling = styled.div`
   margin-bottom: 3%;
-  .matches-list-title-block {
-    margin-bottom: 4%;
-  }
   .matches-container {
     margin-bottom: 3%;
   }
@@ -27,8 +24,6 @@ export default function MatchesList({matches}: MatchListComponentPropsInterface)
   return (
     <>
       <MatchListStyling>
-        <div
-          className="matches-list-title-block">MOST RECENT MATCHES:</div>
         <div
           className="matches-container grid grid-cols-3 gap-3">
           {matches.map((match: Match) => (

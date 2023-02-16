@@ -35,7 +35,7 @@ export default function NewMatchPage({players}: MatchPagesProps) {
       <TennisMatchTrackerHeader />
       <div>Navbar</div>
       <div>
-        {players?.length > 1 ? <MatchesForm players={players} onMatchFormComplete={handleOnMatchFormCompleted}/> : <EmptyState emptyItem="player" navLink="/" />}
+        {players?.length > 1 ? <MatchesForm players={players} onMatchFormComplete={handleOnMatchFormCompleted}/> : <EmptyState emptyItem="player" navLink="/player/new" />}
       </div>
       <TennisMatchTrackerFooter />
     </>

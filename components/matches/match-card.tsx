@@ -32,7 +32,6 @@ export default function MatchCard({match}: MatchCardComponentPropsInterface) {
   }
 
   return (
-    <>
       <MatchCardStyling>
         <div
             className="container-block flex flex-col justify-between content-between">
@@ -101,6 +100,5 @@ export default function MatchCard({match}: MatchCardComponentPropsInterface) {
         </div>
         </div>
       </MatchCardStyling>
-    </>
   )
 }

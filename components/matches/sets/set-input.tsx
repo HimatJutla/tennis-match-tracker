@@ -1,5 +1,3 @@
-import { Player } from '@/interfaces/player/player.interface';
-import { PlayerListComponentPropsInterface } from '@/interfaces/props/component-props/player-list-component-props.interface';
 import { SetInputComponentPropsInterface } from '@/interfaces/props/component-props/set-input-component-props.interface';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
