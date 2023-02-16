@@ -12,12 +12,12 @@ export const config = {
 
 const handler = async (req: NextApiRequest,
     res: NextApiResponse<any>) => {
-        const matchData = req.body;
+        const playerData = req.body;
         try {
             const client = await MongoClient.connect(mongoDbCLientConnectionUrl);
             const db = client.db();
-            const matchesCollection = db.collection('matches');
-            const result = await matchesCollection.insertOne(matchData);
+            const matchesCollection = db.collection('players');
+            const result = await matchesCollection.insertOne(playerData);
             client.close();
             res.status(201).json({message: result});
         } catch(error) {

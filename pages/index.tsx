@@ -11,13 +11,13 @@ import styled from 'styled-components';
 
 
 const IndexPageStyling = styled.div`
-  padding: 0 5% 0 5%;
   .footer-container {
     position: fixed;
     bottom: 0;
-    width: 91%;
+    width: 100%;
   }
   .index-content-container {
+    padding: 0 5% 0 5%;
     display: flex;
     align-items: start;
     height: 85vh;
@@ -107,9 +107,9 @@ export async function getStaticProps() {
           lastName: player.lastName,
           bio: player.bio,
           dateOfBirth: player.dateOfBirth,
-          wins: player.wins,
-          losses: player.losses,
-          // image: player.image,
+          wins: player?.wins ? player.wins : null,
+          losses: player?.losses ? player.losses : null,
+          image: player?.image ? player.image : null,
           country: player.country,
           city: player.city,
           email: player.email

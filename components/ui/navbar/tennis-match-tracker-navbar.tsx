@@ -27,7 +27,7 @@ function Navbar() {
                     <Link href="/match/new">ADD A NEW MATCH</Link>
                 </div>
                 <div>
-                <   Link href="/">ADD A NEW PLAYER</Link>
+                <   Link href="/player/new">CREATE PLAYER</Link>
                 </div>
                 <div>
                     <Link href="/">HEAD TO HEAD</Link>
