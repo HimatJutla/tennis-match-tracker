@@ -1,4 +1,4 @@
-import HeadMetaData from '@/components/headMetaData/headMetaData';
+import HeadMetaData from '@/components/ui/headMetaData/headMetaData';
 import PlayerForm from '@/components/players/playerForm';
 import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracker-footer';
 import TennisMatchTrackerHeader from '@/components/ui/header/tennis-match-tracker-header';

@@ -1,5 +1,5 @@
-import EmptyState from '@/components/emptyState/emptyState';
-import HeadMetaData from '@/components/headMetaData/headMetaData';
+import EmptyState from '@/components/ui/emptyState/emptyState';
+import HeadMetaData from '@/components/ui/headMetaData/headMetaData';
 import MatchesForm from '@/components/matches/matches-form';
 import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracker-footer';
 import TennisMatchTrackerHeader from '@/components/ui/header/tennis-match-tracker-header';
@@ -53,7 +53,6 @@ export async function getStaticProps() {
       const players = await playersCollection.find().toArray();
       client.close();
       return {
-  
         props: {
           players: players.map((player) => ({
             id: player._id.toString(),

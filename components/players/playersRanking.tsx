@@ -1,7 +1,7 @@
 import { Player } from '@/interfaces/player/player.interface';
 import { PlayersRankingComponentProps } from '@/interfaces/props/component-props/players-ranking-component-props.interface';
 import { useEffect, useState } from 'react';
-import EmptyState from '../emptyState/emptyState';
+import EmptyState from '../ui/emptyState/emptyState';
 
 function PlayersRanking({players}: PlayersRankingComponentProps) {
 

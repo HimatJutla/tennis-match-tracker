@@ -1,6 +1,7 @@
 import { MatchSet } from '../../interfaces/match/match-score.interface';
 import { MatchCardComponentPropsInterface } from '@/interfaces/props/component-props/match-card-component-props.interface';
 import styled from 'styled-components';
+import BadDataState from '../ui/badDataState/badDataState';
 
 const MatchCardStyling = styled.div`
     margin-bottom: 3%;
@@ -26,7 +27,7 @@ export default function MatchCard({match}: MatchCardComponentPropsInterface) {
   if (!match) {
     return (
         <>
-            Sorry, something went wrong with this match's data
+            <BadDataState badDataItemsString='this match'/>
         </>
       )
   }

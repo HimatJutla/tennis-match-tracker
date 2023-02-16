@@ -2,7 +2,7 @@ import { Player } from '@/interfaces/player/player.interface';
 import { PlayerListComponentPropsInterface } from '@/interfaces/props/component-props/player-list-component-props.interface';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import EmptyState from '../emptyState/emptyState';
+import EmptyState from '../ui/emptyState/emptyState';
 
 
 const PlayersListStyling = styled.div`

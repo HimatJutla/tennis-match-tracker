@@ -33,7 +33,7 @@ function Navbar() {
                     <Link href="/">HEAD TO HEAD</Link>
                 </div>
                 <div>
-                    <Link href="/">FIND A MATCH</Link>
+                    <Link href="/find-match">FIND MATCH</Link>
                 </div>
             </div>
         </NavbarComponentStyling>

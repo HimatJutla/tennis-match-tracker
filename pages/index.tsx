@@ -1,5 +1,5 @@
-import BadDataState from '@/components/badDataState/badDataState';
-import HeadMetaData from '@/components/headMetaData/headMetaData';
+import BadDataState from '@/components/ui/badDataState/badDataState';
+import HeadMetaData from '@/components/ui/headMetaData/headMetaData';
 import MatchesList from '@/components/matches/matchesList';
 import PlayerList from '@/components/players/playerList';
 import PlayersRanking from '@/components/players/playersRanking';

@@ -1,7 +1,7 @@
 import { Match } from '@/interfaces/match/match.interface';
 import { MatchListComponentPropsInterface } from '@/interfaces/props/component-props/match-list-component-props.interface';
 import styled from 'styled-components';
-import EmptyState from '../emptyState/emptyState';
+import EmptyState from '../ui/emptyState/emptyState';
 import MatchCard from './match-card';
 
 const MatchListStyling = styled.div`
