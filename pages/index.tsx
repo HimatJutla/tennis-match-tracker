@@ -46,7 +46,6 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
   const [filteredMatches, setFilteredMatches] = useState(matches);
 
   const handleFilterMatchesByPlayerPassed = (passedPlayer: Player): void => {
-    console.log(passedPlayer);
     const filteredMatches = allMatches.filter((match: Match) => {
       return match.playerOne.id === passedPlayer.id || match.playerTwo.id === passedPlayer.id;
     });
@@ -152,7 +151,7 @@ export async function getStaticProps() {
           dateOfBirth: player.dateOfBirth,
           wins: player?.wins ? player.wins : null,
           losses: player?.losses ? player.losses : null,
-          image: player?.image ? player.image : '/default-profile-picture',
+          image: player?.image ? player.image : '/default-profile-picture.png',
           country: player.country,
           city: player.city,
           email: player.email

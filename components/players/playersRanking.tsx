@@ -13,7 +13,6 @@ function PlayersRanking({players}: PlayersRankingComponentProps) {
     }
 
     useEffect(() => {
-        console.log('use effect called', rankedPlayers);
         const sortPlayersByRank = determinePlayersRank(rankedPlayers);
     }, []);
 

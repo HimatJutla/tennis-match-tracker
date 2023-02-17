@@ -1,8 +1,6 @@
 import BadDataState from '@/components/ui/badDataState/badDataState';
 import HeadMetaData from '@/components/ui/headMetaData/headMetaData';
-import MatchesList from '@/components/matches/matchesList';
 import PlayerList from '@/components/players/playerList';
-import PlayersRanking from '@/components/players/playersRanking';
 import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracker-footer';
 import TennisMatchTrackerHeader from '@/components/ui/header/tennis-match-tracker-header';
 import Navbar from '@/components/ui/navbar/tennis-match-tracker-navbar';
@@ -10,9 +8,8 @@ import { mongoDbCLientConnectionUrl } from '@/consts/mongodb-client-url-connect'
 import { Match } from '@/interfaces/match/match.interface';
 import { Player } from '@/interfaces/player/player.interface';
 import { MongoClient } from 'mongodb';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HeadToHeadPagePropsInterface } from '@/interfaces/props/page-props/find-match-page-props.interface';
-import { devNull } from 'os';
 import HeadToHeadComparison from '@/components/head-to-head/head-to-head-comparison';
 
 export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterface) {
@@ -24,11 +21,9 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
 
     // Handlers
     const handlePlayerOneSelected = (player: Player): void => {
-        console.log(player);
         setHeadToHeadPlayerOne(player);
     }
     const handlePlayerTwoSelected = (player: Player): void => {
-        console.log(player);
         setHeadToHeadPlayerTwo(player);
     }
 
@@ -51,14 +46,9 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
         setShowHeadToHeadSubcomponent(true);
     };
 
-    // Form Submission
-    const handleHeadToHeadFormSubmitted = (event: any): void => {
-        event?.preventDefault();
+    useEffect(() => {
         headToHeadMatchesHandler();
-        setHeadToHeadPlayerOne(null);
-        setHeadToHeadPlayerTwo(null);
-        setHeadToHeadMatches([]);
-    }
+    }, [headToheadPlayerOne, headToheadPlayerTwo])
 
     if (!matches || !players) {
         return (
@@ -80,10 +70,10 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
         <div>Navbar</div>
         {players?.length > 1 ?
             <div>
-            <form onSubmit={handleHeadToHeadFormSubmitted}>
+            <div>
                 <div
-                    className="mb-4">
-                    SELECT TWO PLAYERS TO COMPARE HEAD TO HEAD:
+                    className="mb-4 title-container">
+                    SELECT TWO PLAYERS:
                 </div>
                 <div
                     className="flex items-center">
@@ -109,11 +99,8 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
                             passCurrentPlayerToParent={handlePlayerTwoSelected}
                         />
                     </div>
-                    <button type="submit">
-                        COMPARE
-                    </button>
                 </div>
-            </form>
+            </div>
             {showHeadToHeadSubcomponent ?
                 <HeadToHeadComparison
                     playerOne={headToheadPlayerOne ? headToheadPlayerOne : players[0]}
@@ -165,7 +152,7 @@ export async function getStaticProps() {
           dateOfBirth: player.dateOfBirth,
           wins: player?.wins ? player.wins : null,
           losses: player?.losses ? player.losses : null,
-          image: player?.image ? player.image : '/default-profile-picture',
+          image: player?.image ? player.image : '/default-profile-picture.png',
           country: player.country,
           city: player.city,
           email: player.email
