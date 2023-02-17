@@ -21,7 +21,6 @@ export default function PlayerList({passedPlayers, labelText, selectId, passCurr
             return;
         }
         passCurrentPlayerToParent(currentPlayer, playerNumber);
-    
     }, [currentPlayer]);
 
     if (passedPlayers?.length) {

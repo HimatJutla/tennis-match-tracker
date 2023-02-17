@@ -30,7 +30,7 @@ function Navbar() {
                 <   Link href="/player/new">CREATE PLAYER</Link>
                 </div>
                 <div>
-                    <Link href="/">HEAD TO HEAD</Link>
+                    <Link href="/head-to-head">HEAD TO HEAD</Link>
                 </div>
                 <div>
                     <Link href="/find-match">FIND MATCH</Link>
