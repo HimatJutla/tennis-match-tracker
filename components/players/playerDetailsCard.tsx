@@ -54,7 +54,7 @@ export default function PlayerDetailsCard({player}: PlayerDetailsComponentInterf
                     Date Of Birth:
                 </div>
                 <div>
-                    {player?.bio}
+                    {player?.dateOfBirth}
                 </div>
             </div>
         </div>

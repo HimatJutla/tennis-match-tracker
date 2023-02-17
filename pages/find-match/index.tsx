@@ -97,6 +97,7 @@ export async function getStaticProps() {
             dateOfBirth: player.dateOfBirth,
             wins: player?.wins ? player.wins : 0,
             losses: player?.losses ? player.losses : 0,
+            totalMatches: player?.totalMatches ? player.totalMatches : 0,
             winningPercentage: player?.winningPercentage ? player.winningPercentage : 0,
             image: player?.image ? player.image : '/default-profile-picture.png',
             country: player.country,

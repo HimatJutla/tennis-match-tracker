@@ -8,6 +8,7 @@ export interface Player {
     bio: string;
     wins: number;
     losses: number;
+    totalMatches: number;
     winningPercentage: number;
     country: Country;
     city: string;

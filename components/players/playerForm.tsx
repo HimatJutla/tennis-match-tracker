@@ -62,6 +62,7 @@ function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
             wins: 0,
             losses: 0,
             winningPercentage: 0,
+            totalMatches: 0,
             city: city,
             email: email,
             image: image
@@ -89,10 +90,6 @@ function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
                     <label htmlFor='bio'>Bio</label>
                     <input type='text' max="100" required id='bio' value={bio} onChange={onSetBioHandler} />
                 </div>
-                {/* <div>
-                    <label htmlFor='country'>Country</label>
-                    <input type='text' required id='country' value={country} onChange={onSetCountryHandler} />
-                </div> */}
                 <div>
                     <label htmlFor='country'>Country</label>
                     <select required onChange={onSetCountryHandler} id='country'>

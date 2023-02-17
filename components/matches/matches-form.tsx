@@ -111,14 +111,32 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
     }
 
     const determinePlayerWinningPercentage = (player: Player, matchData: Match): number => {
-        const wins = matchData?.winner.id == playerOne.id ? playerOne.wins++ : playerOne.wins;
-        const losses = matchData?.winner.id !== playerOne.id ? playerOne.losses++ : playerOne.losses;
-        const totalMatches = wins + losses;
-        if (wins == 0) {
+        const wins = matchData?.winner.id === player.id ? player.wins++ : player.wins;
+        const losses = matchData?.winner.id !== player.id ? player.losses++ : player.losses;
+        if (wins === 0) {
             return 0;
         }
+        const totalMatches = wins + losses;
         return (wins / totalMatches)*100;
     }
+
+    const updatePlayerPerformanceStats = (player: Player, matchData: Match): Player => {
+        const wins = matchData?.winner.id === player.id ? player.wins + 1 : player.wins;
+        const losses = matchData?.winner.id !== player.id ? player.losses + 1 : player.losses;
+        let winningPercentage = 0;
+        const totalMatches = wins + losses;
+        if (wins > 0) {
+            winningPercentage = (wins / totalMatches)*100;
+        }
+        return {
+            ...player,
+            wins: wins,
+            losses: losses,
+            totalMatches: totalMatches,
+            winningPercentage: winningPercentage
+        }
+    }
+
 
     // Effects
     useEffect(() => {
@@ -136,21 +154,11 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
             date: date,
             city: city,
             location: location,
-            image: image
+            image: image,
         };
-        const playerOneData = {
-            ...playerOne,
-            wins: matchData?.winner.id == playerOne.id ? playerOne.wins++ : playerOne.wins,
-            losses: matchData?.winner.id !== playerOne.id ? playerOne.losses++ : playerOne.losses,
-            winningPercentage: determinePlayerWinningPercentage(playerOne, matchData),
-        };
-        const playerTwoData = {
-            ...playerOne,
-            wins: matchData?.winner.id == playerTwo.id ? playerTwo.wins++ : playerTwo.wins,
-            losses: matchData?.winner.id !== playerTwo.id ? playerTwo.losses++ : playerTwo.losses,
-            winningPercentage: determinePlayerWinningPercentage(playerTwo, matchData),
-        }
-       onMatchFormComplete(matchData, playerOneData, playerTwoData);
+        const playerOneWithUpdatedStats = updatePlayerPerformanceStats(playerOne, matchData);
+        const playerTwoWithUpdatedStats = updatePlayerPerformanceStats(playerTwo, matchData);
+       onMatchFormComplete(matchData, playerOneWithUpdatedStats, playerTwoWithUpdatedStats);
     }
 
     return (

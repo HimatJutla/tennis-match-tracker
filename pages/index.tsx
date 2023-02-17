@@ -92,16 +92,24 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
                       selectId="filterByPlayer" 
                       passCurrentPlayerToParent={handleFilterMatchesByPlayerPassed}
                     />
-                    <button
-                      className="ml-5 p-1"
-                      disabled={filteredMatches == allMatches}
-                      onClick={resetMatchFilters}>
-                      SHOW ALL MATCHES
-                    </button>
+                    {matches?.length && players?.length ?
+                      <button
+                        className="ml-5 p-1"
+                        disabled={filteredMatches == allMatches}
+                        onClick={resetMatchFilters}>
+                        SHOW ALL MATCHES
+                      </button>
+                    :
+                      <div></div>
+                    }
                   </div>
-                  <div>
-                    {filteredMatches == allMatches ? 'SHOWING RESULTS FOR ALL PLAYERS' : 'SHOWING RESULTS FOR SELECTED PLAYER'}
-                  </div>
+                  {matches?.length && players?.length ?
+                    <div>
+                      {filteredMatches == allMatches ? 'SHOWING RESULTS FOR ALL PLAYERS' : 'SHOWING RESULTS FOR SELECTED PLAYER'}
+                    </div>
+                  :
+                    <div></div>
+                  }
                   <MatchesList matches={filteredMatches}/>
               </div>
               <div
@@ -154,6 +162,7 @@ export async function getStaticProps() {
           dateOfBirth: player.dateOfBirth,
           wins: player?.wins ? player.wins : 0,
           losses: player?.losses ? player.losses : 0,
+          totalMatches: player?.totalMatches ? player.totalMatches : 0,
           winningPercentage: player?.winningPercentage ? player.winningPercentage : 0,
           image: player?.image ? player.image : '/default-profile-picture.png',
           country: player.country,

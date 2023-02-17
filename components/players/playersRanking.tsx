@@ -8,16 +8,12 @@ function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
     const [rankedPlayers, setRankedPlayers] = useState(players);
 
     const determinePlayersRank = (playersToRank: Array<Player>): Array<Player> => {
-        // do a reduce method here
-        // const sortedPlayers = playersToRank.sort((a, b) => {
-
-        // });
         return playersToRank;
     }
 
     useEffect(() => {
         const sortPlayersByRank = determinePlayersRank(rankedPlayers);
-    }, []);
+    }, [matches]);
 
 
     if (!players?.length) {
