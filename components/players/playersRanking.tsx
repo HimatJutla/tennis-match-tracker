@@ -3,17 +3,21 @@ import { PlayersRankingComponentProps } from '@/interfaces/props/component-props
 import { useEffect, useState } from 'react';
 import EmptyState from '../ui/emptyState/emptyState';
 
-function PlayersRanking({players}: PlayersRankingComponentProps) {
+function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
 
     const [rankedPlayers, setRankedPlayers] = useState(players);
 
     const determinePlayersRank = (playersToRank: Array<Player>): Array<Player> => {
-        // do a reduce method here 
+        // do a reduce method here
+        // const sortedPlayers = playersToRank.sort((a, b) => {
+
+        // });
         return playersToRank;
     }
 
     useEffect(() => {
         const sortPlayersByRank = determinePlayersRank(rankedPlayers);
+        console.log(sortPlayersByRank);
     }, []);
 
 

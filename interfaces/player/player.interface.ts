@@ -6,6 +6,7 @@ export interface Player {
     bio: string;
     wins?: number;
     losses?: number;
+    winningPercentage?: number;
     country: string;
     city: string;
     email: string;

@@ -8,10 +8,11 @@ import { Match } from '@/interfaces/match/match.interface';
 import { MatchPagesProps } from '@/interfaces/props/page-props/match-pages-props.interface';
 import { MongoClient } from 'mongodb';
 import router from 'next/router';
+import { Player } from '@/interfaces/player/player.interface';
 
 export default function NewMatchPage({players}: MatchPagesProps) {
 
-    const handleOnMatchFormCompleted = async(enteredMatchData: Match): Promise<any> => {
+    const handleOnMatchFormCompleted = async(enteredMatchData: Match, playerOneData: Player, playerTwoData: Player): Promise<any> => {
         try {
           const matchAddedResponse = await fetch('../api/match/new', {
             method: 'POST',
@@ -20,7 +21,29 @@ export default function NewMatchPage({players}: MatchPagesProps) {
               'Content-Type': 'application/json',
             },
           });
-          const data = await matchAddedResponse.json();
+          const matchAddedResponseData = await matchAddedResponse.json();
+          console.log(matchAddedResponseData);
+
+          const playerOneUpdatedResponse = await fetch('../api/player/update', {
+            method: 'PUT',
+            body: JSON.stringify(playerOneData),
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+          const playerOneUpdatedResponseData = await playerOneUpdatedResponse.json();
+          console.log(playerOneUpdatedResponseData);
+
+          const playerTwoUpdatedResponse = await fetch('../api/player/update', {
+            method: 'PUT',
+            body: JSON.stringify(playerTwoData),
+            headers: {
+              'Content-Type': 'application/json',
+            }
+          });
+          const playerTwoUpdatedResponseData = await playerTwoUpdatedResponse.json();
+          console.log(playerTwoUpdatedResponseData);
+
         } catch(error) {
           console.error(error);
         }

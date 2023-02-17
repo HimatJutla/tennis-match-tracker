@@ -6,6 +6,7 @@ import PlayerList from '../players/playerList';
 import styled from 'styled-components';
 import SetInput from './sets/set-input';
 import { MatchScore } from '@/interfaces/match/match-score.interface';
+import { Match } from '@/interfaces/match/match.interface';
 
 const MatchesFormStyling = styled.div`
 `;
@@ -108,6 +109,16 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
         return playerTwo;
     }
 
+    const determinePlayerWinningPercentage = (player: Player, matchData: Match): number => {
+        const wins = matchData?.winner.id == playerOne.id ? playerOne.wins++ : playerOne.wins;
+        const losses = matchData?.winner.id !== playerOne.id ? playerOne.losses++ : playerOne.losses;
+        const totalMatches = wins + losses;
+        if (wins == 0) {
+            return 0;
+        }
+        return (wins / totalMatches)*100;
+    }
+
     // Effects
     useEffect(() => {
         setShouldSetsBeDisplayedHandler();
@@ -126,7 +137,19 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
             location: location,
             image: image
         };
-       onMatchFormComplete(matchData);
+        const playerOneData = {
+            ...playerOne,
+            wins: matchData?.winner.id == playerOne.id ? playerOne.wins++ : playerOne.wins,
+            losses: matchData?.winner.id !== playerOne.id ? playerOne.losses++ : playerOne.losses,
+            winningPercentage: determinePlayerWinningPercentage(playerOne),
+        };
+        const playerTwoData = {
+            ...playerOne,
+            wins: matchData?.winner.id == playerTwo.id ? playerTwo.wins++ : playerTwo.wins,
+            losses: matchData?.winner.id !== playerTwo.id ? playerTwo.losses++ : playerTwo.losses,
+            winningPercentage: determinePlayerWinningPercentage(playerTwo),
+        }
+       onMatchFormComplete(matchData, playerOneData, playerTwoData);
     }
 
     return (
