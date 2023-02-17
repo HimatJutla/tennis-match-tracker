@@ -46,7 +46,7 @@ export default function PlayerList({passedPlayers, labelText, selectId, passCurr
     return (
         <>
             <div>
-                <EmptyState emptyItem="player" navLink="/player/new"/>
+                <EmptyState pluralizedEmptyItem="players" singularEmptyItem="player" navLink="/player/new"/>
             </div>
         </>
     );

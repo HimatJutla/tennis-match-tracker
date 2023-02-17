@@ -67,7 +67,7 @@ export default function FindMatchPage({players}: FindMatchPageProps) {
                         <PlayerDetails key={player.id} player={player}/>
                     ))}
                 </div>
-            : <EmptyState emptyItem='player' navLink='player/new'/>}
+            : <EmptyState pluralizedEmptyItem="players" singularEmptyItem="player" navLink="/player/new" />}
         </div>
       }
       <TennisMatchTrackerFooter />

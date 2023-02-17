@@ -16,7 +16,7 @@ export default function MatchesList({matches}: MatchListComponentPropsInterface)
   if (!matches?.length) {
     return (
         <>
-            <EmptyState emptyItem="matche" navLink="/match/new"/>
+            <EmptyState pluralizedEmptyItem="matches" singularEmptyItem="match" navLink="/match/new" />
         </>
       )
   }

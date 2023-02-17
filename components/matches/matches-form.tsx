@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import SetInput from './sets/set-input';
 import { MatchScore } from '@/interfaces/match/match-score.interface';
 import { Match } from '@/interfaces/match/match.interface';
+import { match } from 'assert';
 
 const MatchesFormStyling = styled.div`
 `;
@@ -141,13 +142,13 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
             ...playerOne,
             wins: matchData?.winner.id == playerOne.id ? playerOne.wins++ : playerOne.wins,
             losses: matchData?.winner.id !== playerOne.id ? playerOne.losses++ : playerOne.losses,
-            winningPercentage: determinePlayerWinningPercentage(playerOne),
+            winningPercentage: determinePlayerWinningPercentage(playerOne, matchData),
         };
         const playerTwoData = {
             ...playerOne,
             wins: matchData?.winner.id == playerTwo.id ? playerTwo.wins++ : playerTwo.wins,
             losses: matchData?.winner.id !== playerTwo.id ? playerTwo.losses++ : playerTwo.losses,
-            winningPercentage: determinePlayerWinningPercentage(playerTwo),
+            winningPercentage: determinePlayerWinningPercentage(playerTwo, matchData),
         }
        onMatchFormComplete(matchData, playerOneData, playerTwoData);
     }

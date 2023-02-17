@@ -1,7 +1,7 @@
 import { MatchScore } from "./match-score.interface";
 import { Player } from "../player/player.interface";
 export interface Match {
-    id: string;
+    id?: string;
     playerOne: Player;
     playerTwo: Player;
     winner: Player;

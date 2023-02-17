@@ -9,15 +9,12 @@ const EmptyStateStyling = styled.div`
     }
 `;
 
-export default function EmptyState({emptyItem, navLink}: EmptyStateComponentProps): any {
-
-  if (emptyItem) {
+export default function EmptyState({pluralizedEmptyItem, singularEmptyItem, navLink}: EmptyStateComponentProps): any {
     return (
         <>
        <EmptyStateStyling>
-            Sorry, there are no {emptyItem}s to display. Add a {emptyItem} by <span className="link-span"><Link href={navLink}>clicking here</Link></span>
+            Sorry, there are no {pluralizedEmptyItem} to display. Add a {singularEmptyItem} by <span className="link-span"><Link href={navLink}>clicking here</Link></span>
         </EmptyStateStyling>
         </>
       )
-  }
 }

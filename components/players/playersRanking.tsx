@@ -24,7 +24,7 @@ function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
         return (
             <>
                 <div>
-                    <EmptyState emptyItem="player" navLink="/player/new"/>
+                    <EmptyState pluralizedEmptyItem="players" singularEmptyItem="player" navLink="/player/new" />
                 </div>
             </>
         )

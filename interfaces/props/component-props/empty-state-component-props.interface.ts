@@ -1,4 +1,5 @@
 export interface EmptyStateComponentProps {
-    emptyItem: string;
+    pluralizedEmptyItem: string;
+    singularEmptyItem: string;
     navLink: string;
 }
