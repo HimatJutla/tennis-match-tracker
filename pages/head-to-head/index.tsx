@@ -101,12 +101,12 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
                     </div>
                 </div>
             </div>
-            {showHeadToHeadSubcomponent ?
+            {showHeadToHeadSubcomponent &&
                 <HeadToHeadComparison
                     playerOne={headToheadPlayerOne ? headToheadPlayerOne : players[0]}
                     playerTwo={headToheadPlayerTwo ? headToheadPlayerTwo: players[1]}
                     headToHeadMatches={headToHeadMatches}
-                /> : <div></div>
+                />
             }
             </div>
         : 
