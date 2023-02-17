@@ -60,10 +60,10 @@ export default function MatchCard({match}: MatchCardComponentPropsInterface) {
                     Sets Played: {match?.score?.numberOfSets}
                 </div>
                 {match?.score?.sets.map((set: MatchSet, index: number) => (
-                    <div className="mb-1">
-                    <div>
-                        Set # {index + 1}: {set.playerOneScore} - {set.playerTwoScore}
-                    </div>
+                    <div className="mb-1" key={index + 1}>
+                        <div>
+                            Set # {index + 1}: {set.playerOneScore} - {set.playerTwoScore}
+                        </div>
                     </div>
                 ))}
             </div>
@@ -96,7 +96,7 @@ export default function MatchCard({match}: MatchCardComponentPropsInterface) {
         <div
             className="flex justify-center items-center winner-block">
             <div>
-                Winner: <span>C</span> <span>{match.playerTwo.firstName} {match.playerTwo.lastName}</span>
+                Winner: <span>C</span> <span>{match?.winner?.firstName} {match?.winner?.lastName}</span>
             </div> 
         </div>
         </div>

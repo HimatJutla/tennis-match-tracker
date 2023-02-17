@@ -17,7 +17,6 @@ export default function FindMatchPage({players}: FindMatchPageProps) {
     const [currentSelectedCity, setCurrentSelectedCity] = useState('');
   
     const handleFilterFindMatches = (city: string): void => {
-      console.log(city);
       setCurrentSelectedCity(city);
     }
 

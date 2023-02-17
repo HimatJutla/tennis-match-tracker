@@ -17,7 +17,6 @@ export default function NewPlayerPage() {
             },
           });
           const data = await playerAddedResponse.json();
-          console.log(data);
         } catch(error) {
           console.error(error);
         }

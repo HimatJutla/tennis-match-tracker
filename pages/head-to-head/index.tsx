@@ -13,6 +13,7 @@ import { MongoClient } from 'mongodb';
 import { useState } from 'react';
 import { HeadToHeadPagePropsInterface } from '@/interfaces/props/page-props/find-match-page-props.interface';
 import { devNull } from 'os';
+import HeadToHeadComparison from '@/components/head-to-head/head-to-head-comparison';
 
 export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterface) {
 
@@ -112,8 +113,8 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
             </form>
             {showHeadToHeadSubcomponent ?
                 <HeadToHeadComparison
-                    headToheadPlayerOne={headToheadPlayerOne}
-                    headToheadPlayerTwo={headToheadPlayerTwo}
+                    playerOne={headToheadPlayerOne ? headToheadPlayerOne : players[0]}
+                    playerTwo={headToheadPlayerTwo ? headToheadPlayerTwo: players[1]}
                     headToHeadMatches={headToHeadMatches}
                 /> : <div></div>
             }

@@ -99,7 +99,7 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
         let playerOneSetWins = 0;
         let playerTwoSetWins = 0;
         score.sets.forEach((set: Set) => {
-            const playerOneWins = verifyIfPlayerOneWins(score?.sets[0]);
+            const playerOneWins = verifyIfPlayerOneWins(set);
             playerOneWins ? playerOneSetWins++ : playerTwoSetWins++;
         });
         if (playerOneSetWins > playerTwoSetWins) {

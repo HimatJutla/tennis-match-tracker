@@ -21,7 +21,6 @@ export default function NewMatchPage({players}: MatchPagesProps) {
             },
           });
           const data = await matchAddedResponse.json();
-          console.log(data);
         } catch(error) {
           console.error(error);
         }
