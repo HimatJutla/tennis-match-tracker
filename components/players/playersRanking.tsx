@@ -17,7 +17,6 @@ function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
 
     useEffect(() => {
         const sortPlayersByRank = determinePlayersRank(rankedPlayers);
-        console.log(sortPlayersByRank);
     }, []);
 
 

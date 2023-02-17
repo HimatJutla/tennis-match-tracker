@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { PlayerFormComponentProps } from '@/interfaces/props/component-props/player-form-component-props.interface';
+import { COUNTRY_DATA } from '@/consts/country-data';
+import { Country } from '@/interfaces/player/country/country';
 
 function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
 
@@ -7,7 +9,7 @@ function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
     const [lastName, setLastName] = useState(player ? player?.lastName : '');
     const [bio, setBio] = useState(player ? player?.bio : '');
     const [dateOfBirth, setDateOfBirth] = useState(player ? player?.dateOfBirth : '');
-    const [country, setCountry] = useState(player ? player?.country : '');
+    const [country, setCountry] = useState(player ? player?.country : null);
     const [city, setCity] = useState(player ? player?.city : '');
     const [email, setEmail] = useState(player ? player?.email : '');
     const [image, setImage] = useState(player ? player?.image : '');
@@ -26,7 +28,7 @@ function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
         setDateOfBirth(event.target.value);
     }
     const onSetCountryHandler = (event: any): void => {
-        setCountry(event.target.value);
+        setCountry(JSON.parse(event.target.value));
     }
     const onSetCityHandler = (event: any): void => {
         setCity(event.target.value);
@@ -57,6 +59,9 @@ function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
             bio: bio,
             dateOfBirth: dateOfBirth,
             country: country,
+            wins: 0,
+            losses: 0,
+            winningPercentage: 0,
             city: city,
             email: email,
             image: image
@@ -84,9 +89,22 @@ function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
                     <label htmlFor='bio'>Bio</label>
                     <input type='text' max="100" required id='bio' value={bio} onChange={onSetBioHandler} />
                 </div>
-                <div>
+                {/* <div>
                     <label htmlFor='country'>Country</label>
                     <input type='text' required id='country' value={country} onChange={onSetCountryHandler} />
+                </div> */}
+                <div>
+                    <label htmlFor='country'>Country</label>
+                    <select required onChange={onSetCountryHandler} id='country'>
+                    {COUNTRY_DATA.map((country: Country) => (
+                        <option
+                            key={country.isoCode}
+                            id={country.isoCode}
+                            value={JSON.stringify(country)}>
+                            {country?.flag} {country?.name}
+                        </option>
+                    ))}
+                </select>
                 </div>
                 <div>
                     <label htmlFor='city'>City</label>
@@ -101,7 +119,7 @@ function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
                         <img width="300" src={image} />
                     ) : (
                         <div>
-                            <label htmlFor='image'>Upload Match Image</label>
+                            <label htmlFor='image'>Upload An Image of the Player's Beautiful Face</label>
                             <input id='image' type='file' onChange={e => convertImageToBase64Handler(e)} />
                         </div>
                     )}

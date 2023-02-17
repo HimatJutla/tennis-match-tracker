@@ -22,7 +22,6 @@ export default function NewMatchPage({players}: MatchPagesProps) {
             },
           });
           const matchAddedResponseData = await matchAddedResponse.json();
-          console.log(matchAddedResponseData);
 
           const playerOneUpdatedResponse = await fetch('../api/player/update', {
             method: 'PUT',
@@ -32,7 +31,6 @@ export default function NewMatchPage({players}: MatchPagesProps) {
             }
           });
           const playerOneUpdatedResponseData = await playerOneUpdatedResponse.json();
-          console.log(playerOneUpdatedResponseData);
 
           const playerTwoUpdatedResponse = await fetch('../api/player/update', {
             method: 'PUT',
@@ -42,7 +40,6 @@ export default function NewMatchPage({players}: MatchPagesProps) {
             }
           });
           const playerTwoUpdatedResponseData = await playerTwoUpdatedResponse.json();
-          console.log(playerTwoUpdatedResponseData);
 
         } catch(error) {
           console.error(error);
@@ -82,8 +79,9 @@ export async function getStaticProps() {
             lastName: player.lastName,
             bio: player.bio,
             dateOfBirth: player.dateOfBirth,
-            wins: player?.wins ? player.wins : null,
-            losses: player?.losses ? player.losses : null,
+            wins: player?.wins ? player.wins : 0,
+            losses: player?.losses ? player.losses : 0,
+            winningPercentage: player?.winningPercentage ? player.winningPercentage : 0,
             image: player?.image ? player.image : '/default-profile-picture.png',
             country: player.country,
             city: player.city,

@@ -17,7 +17,6 @@ const PlayerDetailsCardStyling = styled.div`
 `;
 
 export default function PlayerDetailsCard({player}: PlayerDetailsComponentInterface) {
-
   if (!player) {
     return (
         <>
@@ -37,7 +36,7 @@ export default function PlayerDetailsCard({player}: PlayerDetailsComponentInterf
                     Name:
                 </div>
                 <div>
-                    <span>C</span> <span>{player?.firstName} {player?.lastName}</span>
+                    <span>{player?.country?.flag}</span>  <span>{player?.firstName} {player?.lastName}</span>
                 </div>
             </div>
             <div className="mb-2">
@@ -66,7 +65,7 @@ export default function PlayerDetailsCard({player}: PlayerDetailsComponentInterf
                 Location:
             </div>
             <div>
-                {player?.city}, {player?.country}
+                {player?.city}, {player?.country?.flag}  {player?.country?.name}
             </div>
             </div>
             {player?.image &&

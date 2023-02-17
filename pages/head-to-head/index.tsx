@@ -145,17 +145,18 @@ export async function getStaticProps() {
           image: match?.image ? match.image : '/default-tennis-match-picture.png'
         })).reverse(),
         players: players.map((player) => ({
-          id: player._id.toString(),
-          firstName: player.firstName,
-          lastName: player.lastName,
-          bio: player.bio,
-          dateOfBirth: player.dateOfBirth,
-          wins: player?.wins ? player.wins : null,
-          losses: player?.losses ? player.losses : null,
-          image: player?.image ? player.image : '/default-profile-picture.png',
-          country: player.country,
-          city: player.city,
-          email: player.email
+            id: player._id.toString(),
+            firstName: player.firstName,
+            lastName: player.lastName,
+            bio: player.bio,
+            dateOfBirth: player.dateOfBirth,
+            wins: player?.wins ? player.wins : 0,
+            losses: player?.losses ? player.losses : 0,
+            winningPercentage: player?.winningPercentage ? player.winningPercentage : 0,
+            image: player?.image ? player.image : '/default-profile-picture.png',
+            country: player.country,
+            city: player.city,
+            email: player.email
         })).reverse()
       },
       revalidate: 60,
