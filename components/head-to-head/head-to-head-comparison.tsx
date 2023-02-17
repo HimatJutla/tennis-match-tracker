@@ -38,7 +38,7 @@ export default function HeadToHeadComparison({playerOne, playerTwo, headToHeadMa
     }
 
     const calculatePlayerWinningPercentage = (playerWins: number, totalMatches: number): number => {
-        if (playerWins == totalMatches || playerWins == 0) {
+        if (playerWins == 0) {
             return 0;
         }
         return (playerWins / totalMatches)*100;
