@@ -142,7 +142,7 @@ export async function getStaticProps() {
           score: match.score,
           city: match.city,
           location: match?.location ? match?.location : 'No location submitted',
-          image: match?.image ? match.image : null
+          image: match?.image ? match.image : '/default-tennis-match-picture.png'
         })).reverse(),
         players: players.map((player) => ({
           id: player._id.toString(),
@@ -152,7 +152,7 @@ export async function getStaticProps() {
           dateOfBirth: player.dateOfBirth,
           wins: player?.wins ? player.wins : null,
           losses: player?.losses ? player.losses : null,
-          image: player?.image ? player.image : null,
+          image: player?.image ? player.image : '/default-profile-picture',
           country: player.country,
           city: player.city,
           email: player.email

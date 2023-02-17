@@ -99,7 +99,7 @@ export async function getStaticProps() {
             dateOfBirth: player.dateOfBirth,
             wins: player?.wins ? player.wins : null,
             losses: player?.losses ? player.losses : null,
-            image: player?.image ? player.image : null,
+            image: player?.image ? player.image : '/default-profile-picture',
             country: player.country,
             city: player.city,
             email: player.email
@@ -111,4 +111,3 @@ export async function getStaticProps() {
       console.error(error);
     }
   }
-  
