@@ -13,7 +13,6 @@ export const config = {
 const handler = async (req: NextApiRequest,
     res: NextApiResponse<any>) => {
         const playerData = req.body;
-        console.log('new called');
         try {
             const client = await MongoClient.connect(mongoDbCLientConnectionUrl);
             const db = client.db();

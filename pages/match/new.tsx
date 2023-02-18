@@ -31,7 +31,6 @@ export default function NewMatchPage({players}: MatchPagesProps) {
             }
           });
           const playerOneUpdatedResponseData = await playerOneUpdatedResponse.json();
-          console.log(playerOneUpdatedResponse);
 
           const playerTwoUpdatedResponse = await  fetch(`../api/player/${playerTwoData?.id}`, {
             method: 'PUT',

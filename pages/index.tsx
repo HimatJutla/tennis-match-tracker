@@ -118,7 +118,7 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
                   className="mb-4">
                   PLAYER RANKINGS:
                 </div>
-                <PlayersRanking players={players} matches={allMatches}/>
+                <PlayersRanking players={players} matches={matches}/>
               </div>
             </div>
             <div className="footer-container">
@@ -170,7 +170,7 @@ export async function getStaticProps() {
           email: player.email
         })).reverse()
       },
-      revalidate: 60,
+      revalidate: 10,
     };
   } catch(error) {
     console.error(error);
