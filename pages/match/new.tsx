@@ -23,7 +23,7 @@ export default function NewMatchPage({players}: MatchPagesProps) {
           });
           const matchAddedResponseData = await matchAddedResponse.json();
 
-          const playerOneUpdatedResponse = await fetch('../api/player/update', {
+          const playerOneUpdatedResponse = await fetch(`../api/player/${playerOneData?.id}`, {
             method: 'PUT',
             body: JSON.stringify(playerOneData),
             headers: {
@@ -31,8 +31,9 @@ export default function NewMatchPage({players}: MatchPagesProps) {
             }
           });
           const playerOneUpdatedResponseData = await playerOneUpdatedResponse.json();
+          console.log(playerOneUpdatedResponse);
 
-          const playerTwoUpdatedResponse = await fetch('../api/player/update', {
+          const playerTwoUpdatedResponse = await  fetch(`../api/player/${playerTwoData?.id}`, {
             method: 'PUT',
             body: JSON.stringify(playerTwoData),
             headers: {

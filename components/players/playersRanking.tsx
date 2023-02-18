@@ -4,9 +4,9 @@ import { useEffect, useState } from 'react';
 import EmptyState from '../ui/emptyState/emptyState';
 
 function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
-
+// NTS NEED TO RELOAD MATCH DATA AFTER CRUD
     const [rankedPlayers, setRankedPlayers] = useState(players);
-
+console.log(players);
     const determinePlayersRank = (playersToRank: Array<Player>): Array<Player> => {
         return playersToRank;
     }
