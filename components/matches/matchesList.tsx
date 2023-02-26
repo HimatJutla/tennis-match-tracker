@@ -5,7 +5,8 @@ import EmptyState from '../ui/emptyState/emptyState';
 import MatchCard from './match-card';
 
 const MatchListStyling = styled.div`
-  margin-bottom: 3%;
+z-index: 1;
+  padding-bottom: 5%;
   .matches-container {
     margin-bottom: 3%;
   }

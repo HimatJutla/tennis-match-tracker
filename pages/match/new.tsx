@@ -9,6 +9,7 @@ import { MatchPagesProps } from '@/interfaces/props/page-props/match-pages-props
 import { MongoClient } from 'mongodb';
 import router from 'next/router';
 import { Player } from '@/interfaces/player/player.interface';
+import Navbar from '@/components/ui/navbar/tennis-match-tracker-navbar';
 
 export default function NewMatchPage({players}: MatchPagesProps) {
 
@@ -52,7 +53,7 @@ export default function NewMatchPage({players}: MatchPagesProps) {
     <>
       <HeadMetaData />
       <TennisMatchTrackerHeader />
-      <div>Navbar</div>
+      <Navbar />
       <div>
         {players?.length > 1 ? <MatchesForm players={players} onMatchFormComplete={handleOnMatchFormCompleted}/> : <EmptyState pluralizedEmptyItem="players" singularEmptyItem="player" navLink="/player/new" />}
       </div>

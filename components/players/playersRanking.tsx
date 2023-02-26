@@ -40,7 +40,6 @@ function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
     const rankPlayers = (playersToRank: Array<Player>): Array<Player> => {
         const playersRankedByWins = playersToRank.sort((a: Player, b: Player) => {
             if (b?.wins - a?.wins === 0) {
-                console.log('happened', a, b);
                 const winner = determineTieBreakWinner(a, b);
                 if (winner == a) {
                     return -1;
@@ -53,7 +52,6 @@ function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
     }
 
     useEffect(() => {
-        console.log(players);
         const playersWhoCanBeRanked: Array<Player> = [];
         const playersWhoCannotBeRanked: Array<Player> = [];
         players.forEach((player: Player) => {
@@ -66,8 +64,6 @@ function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
         setUnrankedRankedPlayers(playersWhoCannotBeRanked);
         const playersRankedByWins = rankPlayers(playersWhoCanBeRanked);
         setRankedPlayers(playersRankedByWins);
-        console.log('RANKED', rankedPlayers);
-        console.log('UNRANKED', unrankedPlayers);
     }, [players, matches]);
 
 

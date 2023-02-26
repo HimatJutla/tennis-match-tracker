@@ -13,7 +13,8 @@ export default function BadDataState({badDataItemsString}: BadDataStateComponent
   if (badDataItemsString) {
     return (
         <>
-       <BadDataStateStyling>
+       <BadDataStateStyling
+         className="white-text">
             Sorry, there was an issue loading {badDataItemsString}, please try refreshing the page or check back later
         </BadDataStateStyling>
         </>

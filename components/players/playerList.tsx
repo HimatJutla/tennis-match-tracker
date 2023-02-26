@@ -27,7 +27,9 @@ export default function PlayerList({passedPlayers, labelText, selectId, passCurr
         return (
             <>
                 <PlayersListStyling>
-                <label htmlFor={selectId ? selectId : 'playerList'}>{labelText ? labelText : 'Select A Player'}</label>
+                <div>
+                <label className="white-text"  htmlFor={selectId ? selectId : 'playerList'}>{labelText ? labelText : 'Select A Player'}</label>
+                </div>
                 <select onChange={handleSetCurrentPlayer} id={selectId ? selectId : 'playerList'}>
                     {passedPlayers.map((player: Player) => (
                         <option

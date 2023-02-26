@@ -22,12 +22,16 @@ function FindMatchForm({onFindMatchFormComplete}: FindMatchFormComponentProps) {
         <>
             <form
                 onSubmit={submitFindMatchHandler}>
-                <div>
-                    <label htmlFor='city'>City</label>
-                    <input type='text' required id='city' value={city} onChange={onSetCityHandler} />
+                <div className="w-30 mb-3">
+                    <div
+                        className="mb-1">
+                        <label className="white-text" htmlFor='city'>CITY</label>
+                    </div>
+                    <input className="w-100" type='text' required id='city' value={city} onChange={onSetCityHandler} />
                 </div>
-                <div>
+                <div className="w-30 flex justify-end">
                     <button
+                        className="py-1 px-2"
                         type="submit">
                         Find Players
                     </button>

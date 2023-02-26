@@ -9,6 +9,30 @@ import { FindMatchPageProps } from '@/interfaces/props/page-props/find-match-pag
 import { useEffect, useState } from 'react';
 import EmptyState from '@/components/ui/emptyState/emptyState';
 import PlayerDetails from '@/components/players/playerDetailsCard';
+import Navbar from '@/components/ui/navbar/tennis-match-tracker-navbar';
+import styled from 'styled-components';
+
+const FindMatchPageStyling = styled.div`
+  .footer-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .find-match-page-container {
+    background-color: #5A8100;
+    padding: 2% 5% 5% 5%;
+    min-height: 85vh;
+  }
+    .match-list-container {
+      width: 65%;
+      padding-right: 1.5%;
+    }
+    .player-rankings-container {
+      width: 35%;
+      padding-left: 1.5%;
+    }
+  }
+`;
 
 export default function FindMatchPage({players}: FindMatchPageProps) {
 
@@ -46,18 +70,21 @@ export default function FindMatchPage({players}: FindMatchPageProps) {
     <>
       <HeadMetaData />
       <TennisMatchTrackerHeader />
-      <div>Navbar</div>
-      <div
-        className="mb-4">
-        ENTER YOUR CITY TO FIND PLAYERS AND CONTACT THEM TO SET UP A MATCH!
-      </div>
+      <Navbar />
+      <FindMatchPageStyling>
+        <div
+          className="find-match-page-container">
+           <div
+            className="mb-4 white-text large-text">
+            ENTER YOUR CITY AND FIND YOUR MATCH
+          </div>
       <div>
         <FindMatchForm onFindMatchFormComplete={handleFilterFindMatches}/>
       </div>
       {
         currentSelectedCity &&
         <div>
-            <div>
+            <div className="mb-3 white-text">
                 Showing Players in {currentSelectedCity}
             </div>
             {filteredPlayers?.length ?
@@ -70,7 +97,11 @@ export default function FindMatchPage({players}: FindMatchPageProps) {
             : <EmptyState pluralizedEmptyItem="players" singularEmptyItem="player" navLink="/player/new" />}
         </div>
       }
-      <TennisMatchTrackerFooter />
+        </div>
+      <div className="footer-container">
+        <TennisMatchTrackerFooter />
+      </div>
+      </FindMatchPageStyling>
     </>
   )
 }

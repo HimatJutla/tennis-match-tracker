@@ -22,10 +22,11 @@ const IndexPageStyling = styled.div`
     width: 100%;
   }
   .index-content-container {
-    padding: 0 5% 0 5%;
+    background-color: #5A8100;
+    padding: 2% 5% 0 5%;
     display: flex;
     align-items: start;
-    height: 85vh;
+    min-height: 85vh;
     .bad-data-state-container {
       width: 100%;
     }
@@ -80,7 +81,7 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
               <div
                 className="match-list-container">
                 <div
-                  className="mb-4">
+                  className="mb-4 white-text large-text">
                     MOST RECENT MATCHES:
                   </div>
                   <div
@@ -94,7 +95,7 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
                     />
                     {matches?.length && players?.length ?
                       <button
-                        className="ml-5 p-1"
+                        className="ml-5 py-1 px-2"
                         disabled={filteredMatches == allMatches}
                         onClick={resetMatchFilters}>
                         SHOW ALL MATCHES
@@ -104,8 +105,8 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
                     }
                   </div>
                   {matches?.length && players?.length ?
-                    <div>
-                      {filteredMatches == allMatches ? 'SHOWING RESULTS FOR ALL PLAYERS' : 'SHOWING RESULTS FOR SELECTED PLAYER'}
+                    <div className=" mb-3 white-text">
+                      {filteredMatches == allMatches ? 'Showing results for all players' : 'Showing results for selected player'}
                     </div>
                   :
                     <div></div>

@@ -6,6 +6,10 @@ import MatchesList from "../matches/matchesList";
 
 
 const HeadToHeadComponentStyling = styled.div`
+  .head-to-head-block {
+    background-color: #FFB400;
+    border-radius: .5%;
+  }
   .head-to-head-player-first-name {
     font-weight: 600;
     font-size: 1.5em;
@@ -13,6 +17,32 @@ const HeadToHeadComponentStyling = styled.div`
   .head-to-head-player-last-name {
     font-weight: 600;
     font-size: 2.5em;
+    margin-top: -6%;
+  }
+  .head-to-head-string-block {
+    border-top: 2px solid #5A8100;
+  }
+  .vs-block {
+    font-size: 2.75rem;
+    color: #5A8100;
+  }
+  .player-img {
+    border-radius: 10%;
+  }
+  .green-win {
+    color:  #5A8100;
+    font-size: 2rem;
+  }
+  .maroon-loss {
+    color: #FF6C02;
+    font-size: 2rem;
+  }
+  .head-to-head-string-block {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  .matches-list-block {
+    margin-bottom: 2.5%;
   }
 `;
 
@@ -66,26 +96,33 @@ export default function HeadToHeadComparison({playerOne, playerTwo, headToHeadMa
     }, [headToHeadMatches]);
 
     return (
-        <HeadToHeadComponentStyling>
+        <HeadToHeadComponentStyling
+            className="my-5">
             <div
-                className='title-container'>
-                {playerOne?.firstName.toUpperCase()} {playerOne?.lastName.toUpperCase()} VS {playerTwo?.firstName.toUpperCase()} {playerTwo?.lastName.toUpperCase()}
-            </div>
+                className="flex justify-center matches-list-block">
             <div
-                className='flex items-center justify-center mb-3'>
+                className="head-to-head-block py-5 px-3 flex flex-col items-center w-50">
+                <div>
+                <div
+                    className='flex items-center justify-center mb-3'>
                 <div>
                     <div
                         className='flex items-center mb-2'>
-                        <img height="200" width="200" src={playerOne?.image} alt="Image of Player One" />
+                        <img className="player-img" height="200" width="200" src={playerOne?.image} alt="Image of Player One" />
                         <div className="ml-5">
                         <div>
                             WINS:
                         </div>
-                        <div>
-                            {playerOneWins}
+                        <div
+                            className={playerOneWins >= playerTwoWins ? 'green-win' : 'maroon-loss'}>
+                            <strong>
+                                {playerOneWins}
+                            </strong>
                         </div>
                         <div>
-                            {playerOneWinningPercentage.toFixed(2)}%
+                            <strong>
+                                {playerOneWinningPercentage.toFixed(2)}%
+                            </strong>
                         </div>
                     </div>
                     </div>
@@ -99,22 +136,27 @@ export default function HeadToHeadComparison({playerOne, playerTwo, headToHeadMa
                     </div>
                 </div>
                 <div
-                    className='mx-20'>
+                    className='mx-20 vs-block'>
                     VS
                 </div>
                 <div>
                     <div
                         className='flex items-center mb-2'>
-                        <img height="200" width="200" src={playerTwo?.image} alt="Image of Player Two" />
+                        <img className="player-img" height="200" width="200" src={playerTwo?.image} alt="Image of Player Two" />
                         <div className="ml-5">
                             <div>
                                 WINS:
                             </div>
-                            <div>
-                                {playerTwoWins}
+                            <div
+                                 className={playerTwoWins >= playerOneWins ? 'green-win' : 'maroon-loss'}>
+                                <strong>
+                                    {playerTwoWins}
+                                </strong>
                             </div>
                             <div>
-                                {playerTwoWinningPercentage.toFixed(2)}%
+                                <strong>
+                                    {playerTwoWinningPercentage.toFixed(2)}%
+                                </strong>
                             </div>
                         </div>
                     </div>
@@ -129,21 +171,22 @@ export default function HeadToHeadComparison({playerOne, playerTwo, headToHeadMa
                 </div>
             </div>
             <div
-                className='flex items-center justify-center mb-5'>
+                className='flex items-center justify-center mt-5 pt-3 head-to-head-string-block'>
                 {headToHeadString}
+            </div>
+                </div>
+            </div>
             </div>
             {headToHeadMatches?.length ?
             <>
                 <div
-                    className="title-container mb-3">
-                    MATCHES:
+                    className="white-text large-text mb-3">
+                    MATCHES
                 </div>
                 <MatchesList matches={headToHeadMatches} />
             </>
             :
-            <div>
-                No matches to display
-            </div>
+            <div>&nbsp;</div>
             }
         </HeadToHeadComponentStyling>
     )

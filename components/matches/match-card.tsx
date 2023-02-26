@@ -6,19 +6,29 @@ import BadDataState from '../ui/badDataState/badDataState';
 const MatchCardStyling = styled.div`
     margin-bottom: 3%;
     padding: 3%;
-    border: 1px solid black;
+    background-color: #FFB400;
+    border-radius: 8%;
     .container-block {
         min-height: 45vh;
         max-height: 45vh;
+    }
+    .players-block {
+        border-bottom: 2px solid #5A8100;
+    }
+    .player-block {
+        font-size: 1.35rem;
+    }
+    .img-container img {
+        border-radius: 5%;
+        border: 1px solid black;
     }
     .match-card-title {
         font-size: 1.25 rem;
         font-weight: 600;
     }
     .winner-block {
-        border: 1px solid black;
-        border-radius: 5%;
-        padding: 3%;
+        border-top: 2px solid #5A8100;
+        font-size: 1.5rem;
     }
 `;
 
@@ -35,19 +45,19 @@ export default function MatchCard({match}: MatchCardComponentPropsInterface) {
   return (
       <MatchCardStyling>
         <div
-            className="container-block flex flex-col justify-between content-between">
+            className="container-block flex flex-col justify-between content-between p-3">
         <div
-            className="flex items-center justify-between">
+            className="flex items-center justify-between players-block pb-3">
             <div
                 className="player-block">
                 <div>
-                    <span>C</span> <span>{match.playerOne.firstName} {match.playerOne.lastName}</span>
+                <span>{match?.playerOne?.country?.flag}</span> <span>{match.playerOne.firstName} {match.playerOne.lastName}</span>
                 </div>
             </div>
             <div
                 className="player-block">
                 <div>
-                    <span>C</span> <span>{match.playerTwo.firstName} {match.playerTwo.lastName}</span>
+                <span>{match?.playerTwo?.country?.flag}</span> <span>{match.playerTwo.firstName} {match.playerTwo.lastName}</span>
                 </div>
             </div>
         </div>
@@ -62,7 +72,7 @@ export default function MatchCard({match}: MatchCardComponentPropsInterface) {
                 {match?.score?.sets.map((set: MatchSet, index: number) => (
                     <div className="mb-1" key={index + 1}>
                         <div>
-                            Set # {index + 1}: {set.playerOneScore} - {set.playerTwoScore}
+                            <strong>Set {index + 1}:</strong> {set.playerOneScore} - {set.playerTwoScore}
                         </div>
                     </div>
                 ))}
@@ -88,15 +98,15 @@ export default function MatchCard({match}: MatchCardComponentPropsInterface) {
         {match?.image &&
             <div
                 className="flex justify-center items-center">
-                <div>
-                    <img width="100" height="100" src={match.image} alt="Image of the match"/>
+                <div className="img-container">
+                    <img width="180" height="180" src={match.image} alt="Image of the match"/>
                 </div>
             </div>
         }
         <div
-            className="flex justify-center items-center winner-block">
+            className="flex justify-center items-center winner-block pt-3">
             <div>
-                Winner: <span>C</span> <span>{match?.winner?.firstName} {match?.winner?.lastName}</span>
+                <span>{match?.winner?.country?.flag}</span> <span>{match?.winner?.firstName} {match?.winner?.lastName}</span> Wins
             </div> 
         </div>
         </div>

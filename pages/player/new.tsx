@@ -4,6 +4,7 @@ import TennisMatchTrackerFooter from '@/components/ui/footer/tennis-match-tracke
 import TennisMatchTrackerHeader from '@/components/ui/header/tennis-match-tracker-header';
 import { Player } from '@/interfaces/player/player.interface';
 import router from 'next/router';
+import Navbar from '@/components/ui/navbar/tennis-match-tracker-navbar';
 
 export default function NewPlayerPage() {
 
@@ -27,6 +28,7 @@ export default function NewPlayerPage() {
     <>
       <HeadMetaData />
       <TennisMatchTrackerHeader />
+      <Navbar />
       <div>Navbar</div>
       <div>
         <PlayerForm onPlayerFormComplete={handleOnPlayerFormCompleted}/>

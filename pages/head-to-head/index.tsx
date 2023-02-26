@@ -9,8 +9,26 @@ import { Match } from '@/interfaces/match/match.interface';
 import { Player } from '@/interfaces/player/player.interface';
 import { MongoClient } from 'mongodb';
 import { useEffect, useState } from 'react';
-import { HeadToHeadPagePropsInterface } from '@/interfaces/props/page-props/find-match-page-props.interface';
+import { HeadToHeadPagePropsInterface } from '@/interfaces/props/page-props/head-to-head-page-props.interface';
 import HeadToHeadComparison from '@/components/head-to-head/head-to-head-comparison';
+import styled from 'styled-components';
+
+
+const HeadToHeadPageStyling = styled.div`
+  .footer-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .head-to-head-content-container {
+    background-color: #5A8100;
+    padding: 2% 5% 0 5%;
+    min-height: 85vh;
+  }
+  .player-select-block {
+    margin-bottom: 2.5%;
+  }
+`;
 
 export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterface) {
 
@@ -53,8 +71,9 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
     if (!matches || !players) {
         return (
             <>
-                <HeadMetaData />
-                <Navbar />
+            <HeadMetaData />
+            <TennisMatchTrackerHeader />
+            <Navbar />
                 <div
                     className="bad-data-state-container">
                 <BadDataState badDataItemsString="matches and players"/>
@@ -65,14 +84,18 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
 
   return (
     <>
-        <HeadMetaData />
-        <TennisMatchTrackerHeader />
-        <div>Navbar</div>
-        {players?.length > 1 ?
+    <HeadMetaData />
+    <TennisMatchTrackerHeader />
+    <Navbar />
+    <HeadToHeadPageStyling>
+        <div
+            className="head-to-head-content-container">
+            {players?.length > 1 ?
             <div>
-            <div>
+            <div className="flex justify-center player-select-block">
+                <div>
                 <div
-                    className="mb-4 title-container">
+                    className="mb-4 large-text white-text">
                     SELECT TWO PLAYERS:
                 </div>
                 <div
@@ -100,6 +123,7 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
                         />
                     </div>
                 </div>
+                </div>
             </div>
             {showHeadToHeadSubcomponent &&
                 <HeadToHeadComparison
@@ -114,7 +138,12 @@ export default function HeadToHead({matches, players}: HeadToHeadPagePropsInterf
                 There aren't enough players to compare head to head
             </div>
         }
-        <TennisMatchTrackerFooter />
+        </div>
+        <div
+            className="footer-container">
+            <TennisMatchTrackerFooter />
+        </div>
+        </HeadToHeadPageStyling>
     </>
   )
 }

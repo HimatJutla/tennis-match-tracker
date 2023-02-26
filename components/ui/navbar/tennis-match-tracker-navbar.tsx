@@ -5,8 +5,10 @@ const NavbarComponentStyling = styled.div`
   display: flex;
   align-items: center;
   justify-content: end;
-  padding: 0 5% 0 5%;
-  margin-bottom: 3%;
+  padding: 0.5% 5%;
+  background-color: #FF6C02;
+  font-size: .875rem;
+color: white;
   .navbar-items-container {
     width: 40%;
     display: flex;
@@ -24,7 +26,7 @@ function Navbar() {
                     <Link href="/">HOME</Link>
                 </div>
                 <div>
-                    <Link href="/match/new">ADD A NEW MATCH</Link>
+                    <Link href="/match/new">ADD MATCH</Link>
                 </div>
                 <div>
                 <   Link href="/player/new">CREATE PLAYER</Link>

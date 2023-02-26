@@ -1,7 +1,6 @@
-import { Match } from "@/interfaces/match/match.interface";
 import { Player } from "@/interfaces/player/player.interface";
 
-export interface HeadToHeadPagePropsInterface {
+export interface FindMatchPageProps {
     players: Array<Player>;
-    matches: Array<Match>;
 }
+

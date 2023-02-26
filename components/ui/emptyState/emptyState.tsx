@@ -12,7 +12,8 @@ const EmptyStateStyling = styled.div`
 export default function EmptyState({pluralizedEmptyItem, singularEmptyItem, navLink}: EmptyStateComponentProps): any {
     return (
         <>
-       <EmptyStateStyling>
+       <EmptyStateStyling
+            className="white-text">
             Sorry, there are no {pluralizedEmptyItem} to display. Add a {singularEmptyItem} by <span className="link-span"><Link href={navLink}>clicking here</Link></span>
         </EmptyStateStyling>
         </>
