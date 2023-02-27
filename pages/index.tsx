@@ -85,7 +85,7 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
                     MOST RECENT MATCHES:
                   </div>
                   <div
-                    className="flex items-center mb-4">
+                    className="flex items-end mb-4">
                     <PlayerList
                       passedPlayers={players}
                       playerNumber={1}
@@ -116,13 +116,14 @@ export default function Home({matches, players}: IndexPagePropsInterface) {
               <div
                 className="player-rankings-container">
                 <div
-                  className="mb-4">
+                  className="mb-4 white-text large-text">
                   PLAYER RANKINGS:
                 </div>
                 <PlayersRanking players={players} matches={matches}/>
               </div>
             </div>
-            <div className="footer-container">
+            <div
+              className="footer-container">
               <TennisMatchTrackerFooter />
             </div>
       </IndexPageStyling>

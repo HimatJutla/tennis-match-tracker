@@ -101,7 +101,7 @@ export default function HeadToHeadComparison({playerOne, playerTwo, headToHeadMa
             <div
                 className="flex justify-center matches-list-block">
             <div
-                className="head-to-head-block py-5 px-3 flex flex-col items-center w-50">
+                className="head-to-head-block py-5 px-3 flex flex-col items-center w-70">
                 <div>
                 <div
                     className='flex items-center justify-center mb-3'>

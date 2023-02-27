@@ -3,9 +3,32 @@ import { Player } from '@/interfaces/player/player.interface';
 import { PlayersRankingComponentProps } from '@/interfaces/props/component-props/players-ranking-component-props.interface';
 import { useEffect, useState } from 'react';
 import EmptyState from '../ui/emptyState/emptyState';
+import styled from 'styled-components';
+
+
+const PlayerDetailsCardStyling = styled.div`
+    .player-rank-block {
+        padding: 2% 4%;
+        border-radius: 1%;
+        background-color: white;
+    }
+    .rank-stats-block {
+        font-size: .8rem;
+    }
+    .img-block {
+        width: 15%;
+    }
+    .player-name-block {
+        width: 50%;
+        border-bottom: 2px solid green;
+    }
+    .unranked-players-block {
+        margin-top: 11%;
+    }
+`;
+
 
 function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
-// NTS NEED TO RELOAD MATCH DATA AFTER CRUD
     const [rankedPlayers, setRankedPlayers] = useState(players);
     const [unrankedPlayers, setUnrankedRankedPlayers] = useState(players);
 
@@ -88,18 +111,100 @@ function PlayersRanking({players, matches}: PlayersRankingComponentProps) {
     }
 
     return (
-        <>
+        <PlayerDetailsCardStyling>                  
             {
                 rankedPlayers?.length ?
-                <div>{rankedPlayers[0].firstName}</div>
+                rankedPlayers.map((player: Player, index: number) => (
+                    <div className="mb-2 player-rank-block" key={index + 1}>
+                        <div
+                            className="flex items-center">
+                            <div
+                                className="img-block mr-3">
+                                <img src={player?.image} width="75" />
+                            </div>
+                            <div
+                                className="player-name-block mr-5">
+                                <div
+                                    className="large-text">
+                                    <strong>{index + 1}</strong>
+                                </div>
+                                <div>
+                                    <span>{player?.country?.flag}</span> {player?.firstName} {player?.lastName}
+                                </div>
+                            </div>
+                            <div
+                                className="rank-stats-block">
+                                <div>
+                                    <div>
+                                        Wins: {player?.wins}
+                                    </div>
+                                    <div>
+                                        Losses: {player?.losses}
+                                    </div>
+                                    <div>
+                                        Matches Played: {player?.totalMatches}
+                                    </div>
+                                    <div>
+                                        Win Percent: {player?.winningPercentage.toFixed(2)}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))
                 :
                 <div>Sorry, there are currently no ranked players to be displayed</div>
             }
             {
                 unrankedPlayers?.length &&
-                <div>{unrankedPlayers[0].firstName}</div>
+                <div
+                    className="unranked-players-block">
+                    <div
+                        className="white-text large-text mb-4">
+                        UNRANKED PLAYERS
+                    </div>
+                    {unrankedPlayers.map((player: Player, index: number) => (
+                    <div className="mb-2 player-rank-block" key={index + 1}>
+                        <div
+                            className="flex items-center">
+                            <div
+                                className="img-block mr-3">
+                                <img src={player?.image} width="75" />
+                            </div>
+                            <div
+                                className="player-name-block mr-5">
+                                <div
+                                    className="large-text v-hidden">
+                                    <strong>{index + 1}</strong>
+                                </div>
+                                <div>
+                                    <span>{player?.country?.flag}</span> {player?.firstName} {player?.lastName}
+                                </div>
+                            </div>
+                            <div
+                                className="rank-stats-block">
+                                <div>
+                                    <div>
+                                        Wins: 0
+                                    </div>
+                                    <div>
+                                        Losses: 0
+                                    </div>
+                                    <div>
+                                        Matches Played: 0
+                                    </div>
+                                    <div>
+                                        Win Percent: 0%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))
+                }
+                </div>
             }
-        </>
+        </PlayerDetailsCardStyling>
     );
 }
 

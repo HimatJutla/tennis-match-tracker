@@ -2,6 +2,14 @@ import { useState } from 'react';
 import { PlayerFormComponentProps } from '@/interfaces/props/component-props/player-form-component-props.interface';
 import { COUNTRY_DATA } from '@/consts/country-data';
 import { Country } from '@/interfaces/player/country/country';
+import styled from 'styled-components';
+
+const PlayersFormStyling = styled.div`
+    padding: 3%;
+    background-color: #FFF9E9;
+    border-radius: 8%;
+    width: 50%;
+`;
 
 function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
 
@@ -71,28 +79,43 @@ function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
     }
 
     return (
-        <>
+        <PlayersFormStyling>
             <form
                 onSubmit={submitPlayerHandler}>
-                <div>
-                    <label htmlFor='firstName'>First Name</label>
-                    <input type='text' required id='firstName' value={firstName} onChange={onSetFirstNameHandler} />
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='firstName'>First Name</label>
+                    </div>
+                    <input className="w-100" type='text' required id='firstName' value={firstName} onChange={onSetFirstNameHandler} />
                 </div>
-                <div>
-                    <label htmlFor='lastName'>Last Name</label>
-                    <input type='text' required id='lastName' value={lastName} onChange={onSetLastNameHandler} />
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='lastName'>Last Name</label>
+                    </div>
+                    <input className="w-100" type='text' required id='lastName' value={lastName} onChange={onSetLastNameHandler} />
                 </div>
-                <div>
-                    <label htmlFor='dateOfBirth'>Date Of Birth</label>
-                    <input type='date' required id='dateOfBirth' value={dateOfBirth} onChange={onSetDateOfBirthHandler} />
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='dateOfBirth'>Date Of Birth</label>
+                    </div>
+                    <input className="w-100" type='date' required id='dateOfBirth' value={dateOfBirth} onChange={onSetDateOfBirthHandler} />
                 </div>
-                <div>
-                    <label htmlFor='bio'>Bio</label>
-                    <input type='text' max="100" required id='bio' value={bio} onChange={onSetBioHandler} />
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='bio'>Bio</label>
+                    </div>
+                    <input className="w-100" type='text' max="100" required id='bio' value={bio} onChange={onSetBioHandler} />
                 </div>
-                <div>
-                    <label htmlFor='country'>Country</label>
-                    <select required onChange={onSetCountryHandler} id='country'>
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='country'>Country</label>
+                    </div>
+                    <select className="w-100" required onChange={onSetCountryHandler} id='country'>
                     {COUNTRY_DATA.map((country: Country) => (
                         <option
                             key={country.isoCode}
@@ -103,29 +126,43 @@ function PlayerForm({player, onPlayerFormComplete}: PlayerFormComponentProps) {
                     ))}
                 </select>
                 </div>
-                <div>
-                    <label htmlFor='city'>City</label>
-                    <input type='text' required id='city' value={city} onChange={onSetCityHandler} />
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='city'>City</label>
+                    </div>
+                    <input className="w-100" type='text' required id='city' value={city} onChange={onSetCityHandler} />
                 </div>
-                <div>
-                    <label htmlFor='email'>Email</label>
-                    <input type='text' required min="5" id='email' value={email} onChange={onSetEmailHandler} />
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='email'>Email</label>
+                    </div>
+                    <input className="w-100" type='text' required min="5" id='email' value={email} onChange={onSetEmailHandler} />
                 </div>
-                <div>
+                <div
+                    className="mb-4">
                     {image ? (
-                        <img width="300" src={image} />
+                        <div
+                            className="flex items-center justify-center">
+                            <img width="300" src={image} />
+                        </div>
                     ) : (
-                        <div>
-                            <label htmlFor='image'>Upload An Image of the Player's Beautiful Face</label>
-                            <input id='image' type='file' onChange={e => convertImageToBase64Handler(e)} />
+                        <div
+                            className="mb-3">
+                            <div>
+                                <label htmlFor='image'>Upload An Image of the Player's Beautiful Face</label>
+                            </div>
+                            <input className="w-100" id='image' type='file' onChange={e => convertImageToBase64Handler(e)} />
                         </div>
                     )}
                 </div>
-                <div>
-                    <button type="submit">{player ? `Update Player` : 'Create Player'}</button>
+                <div
+                    className="flex items-center justify-end">
+                    <button  className="py-1 px-3" type="submit">{player ? `Update Player` : 'Create Player'}</button>
                 </div>
             </form>
-        </>
+        </PlayersFormStyling>
     );
 }
 

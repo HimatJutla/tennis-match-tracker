@@ -7,9 +7,12 @@ import styled from 'styled-components';
 import SetInput from './sets/set-input';
 import { MatchScore } from '@/interfaces/match/match-score.interface';
 import { Match } from '@/interfaces/match/match.interface';
-import { match } from 'assert';
 
 const MatchesFormStyling = styled.div`
+    padding: 3%;
+    background-color: #FFF9E9;
+    border-radius: 8%;
+    width: 50%;
 `;
 
 function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchFormComponentProps) {
@@ -165,15 +168,22 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
         <MatchesFormStyling>
             <form
                 onSubmit={submitMatchHandler}>
-                <div>
-                    <PlayerList passedPlayers={players} selectId='playerOne' labelText="Player One" playerNumber={1} defaultPlayer={playerOne} passCurrentPlayerToParent={handlePlayerPassed}></PlayerList>
+                <div
+                    className="flex items-center justify-start mb-3">
+                <div
+                    className="mr-3">
+                    <PlayerList passedPlayers={players} selectId='playerOne' labelText="Player One" playerNumber={1} defaultPlayer={playerOne} blackTextLabel={true} passCurrentPlayerToParent={handlePlayerPassed}></PlayerList>
                 </div>
                 <div>
-                    <PlayerList passedPlayers={players} selectId='playerTwo' labelText="Player Two" playerNumber={2} defaultPlayer={playerTwo} passCurrentPlayerToParent={handlePlayerPassed}></PlayerList>
+                    <PlayerList passedPlayers={players} selectId='playerTwo' labelText="Player Two" playerNumber={2} defaultPlayer={playerTwo} blackTextLabel={true} passCurrentPlayerToParent={handlePlayerPassed}></PlayerList>
                 </div>
-                <div>
-                    <label htmlFor='numberOfSets'>Sets Played</label>
-                    <input type='number' min="1" max="5" required id='numberOfSets' value={numberOfSets} onChange={onSetNumberOfSetsHandler} />
+                </div>
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='numberOfSets'>Sets Played</label>
+                    </div>
+                    <input className="w-100" type='number' min="1" max="5" required id='numberOfSets' value={numberOfSets} onChange={onSetNumberOfSetsHandler} />
                 </div>
 
                 {displaySetInputs &&
@@ -181,30 +191,46 @@ function MatchesForm({players, matchToBeUpdated, onMatchFormComplete}: MatchForm
                         <SetInput key={index + 1} playerOne={playerOne} playerTwo={playerTwo} setNumber={index + 1} passScoreUpToParent={handleScoreChange}/>
                     ))
                 }
-                <div>
-                    <label htmlFor='date'>Date</label>
-                    <input type='date' required id='date' value={date} onChange={onSetDateHandler} />
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='date'>Date</label>
+                    </div>
+                    <input className="w-100" type='date' required id='date' value={date} onChange={onSetDateHandler} />
                 </div>
-                <div>
-                    <label htmlFor='city'>City</label>
-                    <input type='text' required id='city' value={city} onChange={onSetCityHandler} />
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='city'>City</label>
+                    </div>
+                    <input className="w-100" type='text' required id='city' value={city} onChange={onSetCityHandler} />
                 </div>
-                <div>
-                    <label htmlFor='city'>Location</label>
-                    <input type='text' required id='location' value={location} onChange={onSetLocationHandler} />
+                <div
+                    className="mb-3">
+                    <div>
+                        <label htmlFor='city'>Location</label>
+                    </div>
+                    <input className="w-100" type='text' required id='location' value={location} onChange={onSetLocationHandler} />
                 </div>
-                <div>
+                <div
+                    className="mb-4">
                     {image ? (
-                        <img width="300" src={image} />
+                        <div
+                            className="flex justify-center">
+                            <img width="300" src={image} />
+                        </div>
                     ) : (
                         <div>
-                            <label htmlFor='image'>Upload Match Image</label>
-                            <input id='image' type='file' onChange={e => convertImageToBase64Handler(e)} />
+                            <div>
+                                <label htmlFor='image'>Upload Match Image</label>
+                            </div>
+                            <input className="w-100" id='image' type='file' onChange={e => convertImageToBase64Handler(e)} />
                         </div>
                     )}
                 </div>
-                <div>
-                    <button type="submit">{matchToBeUpdated ? `Update Match` : 'Add Match'}</button>
+                <div
+                    className="flex items-center justify-end">
+                    <button className="py-1 px-3" type="submit">{matchToBeUpdated ? `Update Match` : 'Add Match'}</button>
                 </div>
             </form>
         </MatchesFormStyling>

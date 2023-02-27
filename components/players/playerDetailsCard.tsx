@@ -23,6 +23,7 @@ const PlayerDetailsCardStyling = styled.div`
 `;
 
 export default function PlayerDetailsCard({player}: PlayerDetailsComponentInterface) {
+
   if (!player) {
     return (
         <>
@@ -57,6 +58,37 @@ export default function PlayerDetailsCard({player}: PlayerDetailsComponentInterf
                 </div>
                 <div>
                     {player?.dateOfBirth}
+                </div>
+            </div>
+            <div
+                className="mb-2 flex items-center">
+                <div>
+                    <div
+                        className="player-card-title">
+                        Wins:
+                    </div>
+                    <div>
+                        {player?.wins}
+                    </div>
+                </div>
+                <div
+                    className="ml-5">
+                    <div
+                        className="player-card-title">
+                        Losses:
+                    </div>
+                    <div>
+                        {player?.losses}
+                    </div>
+                </div>
+            </div>
+            <div className="mb-2">
+                <div
+                    className="player-card-title">
+                    Winning Percentage:
+                </div>
+                <div>
+                    {player?.winningPercentage.toFixed(2)}%
                 </div>
             </div>
         </div>

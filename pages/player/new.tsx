@@ -5,6 +5,28 @@ import TennisMatchTrackerHeader from '@/components/ui/header/tennis-match-tracke
 import { Player } from '@/interfaces/player/player.interface';
 import router from 'next/router';
 import Navbar from '@/components/ui/navbar/tennis-match-tracker-navbar';
+import styled from 'styled-components';
+
+
+const PlayerPageStyling = styled.div`
+  .footer-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .player-content-container {
+    background-color: #5A8100;
+    padding: 2% 5% 5% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 85vh;
+    .bad-data-state-container {
+      width: 100%;
+    }
+  }
+`;
+
 
 export default function NewPlayerPage() {
 
@@ -29,11 +51,16 @@ export default function NewPlayerPage() {
       <HeadMetaData />
       <TennisMatchTrackerHeader />
       <Navbar />
-      <div>Navbar</div>
-      <div>
+      <PlayerPageStyling>
+      <div
+        className="player-content-container">
         <PlayerForm onPlayerFormComplete={handleOnPlayerFormCompleted}/>
       </div>
-      <TennisMatchTrackerFooter />
+      <div
+          className="footer-container">
+          <TennisMatchTrackerFooter />
+        </div>
+      </PlayerPageStyling>
     </>
   )
 }

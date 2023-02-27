@@ -10,6 +10,28 @@ import { MongoClient } from 'mongodb';
 import router from 'next/router';
 import { Player } from '@/interfaces/player/player.interface';
 import Navbar from '@/components/ui/navbar/tennis-match-tracker-navbar';
+import styled from 'styled-components';
+
+
+const MatchPageStyling = styled.div`
+  .footer-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .match-content-container {
+    background-color: #5A8100;
+    padding: 2% 5% 5% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 85vh;
+    .bad-data-state-container {
+      width: 100%;
+    }
+  }
+`;
+
 
 export default function NewMatchPage({players}: MatchPagesProps) {
 
@@ -54,10 +76,16 @@ export default function NewMatchPage({players}: MatchPagesProps) {
       <HeadMetaData />
       <TennisMatchTrackerHeader />
       <Navbar />
-      <div>
-        {players?.length > 1 ? <MatchesForm players={players} onMatchFormComplete={handleOnMatchFormCompleted}/> : <EmptyState pluralizedEmptyItem="players" singularEmptyItem="player" navLink="/player/new" />}
-      </div>
-      <TennisMatchTrackerFooter />
+      <MatchPageStyling>
+        <div
+          className="match-content-container">
+          {players?.length > 1 ? <MatchesForm players={players} onMatchFormComplete={handleOnMatchFormCompleted}/> : <EmptyState pluralizedEmptyItem="players" singularEmptyItem="player" navLink="/player/new" />}
+        </div>
+        <div
+          className="footer-container">
+          <TennisMatchTrackerFooter />
+        </div>
+      </MatchPageStyling>
     </>
   )
 }

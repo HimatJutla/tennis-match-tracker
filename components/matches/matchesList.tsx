@@ -26,7 +26,7 @@ export default function MatchesList({matches}: MatchListComponentPropsInterface)
     <>
       <MatchListStyling>
         <div
-          className="matches-container grid grid-cols-3 gap-3">
+          className="matches-container grid grid-cols-2 gap-2">
           {matches.map((match: Match) => (
             <MatchCard key={match?.id} match={match}/>
           ))}

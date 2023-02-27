@@ -8,7 +8,7 @@ import EmptyState from '../ui/emptyState/emptyState';
 const PlayersListStyling = styled.div`
 `;
 
-export default function PlayerList({passedPlayers, labelText, selectId, passCurrentPlayerToParent, playerNumber, defaultPlayer}: PlayerListComponentPropsInterface) {
+export default function PlayerList({passedPlayers, labelText, selectId, passCurrentPlayerToParent, playerNumber, defaultPlayer, blackTextLabel}: PlayerListComponentPropsInterface) {
 
     const [currentPlayer, setCurrentPlayer] = useState(defaultPlayer ? defaultPlayer : null);
 
@@ -28,7 +28,7 @@ export default function PlayerList({passedPlayers, labelText, selectId, passCurr
             <>
                 <PlayersListStyling>
                 <div>
-                <label className="white-text"  htmlFor={selectId ? selectId : 'playerList'}>{labelText ? labelText : 'Select A Player'}</label>
+                <label className={blackTextLabel ? '': 'white-text'}  htmlFor={selectId ? selectId : 'playerList'}>{labelText ? labelText : 'Select A Player'}</label>
                 </div>
                 <select onChange={handleSetCurrentPlayer} id={selectId ? selectId : 'playerList'}>
                     {passedPlayers.map((player: Player) => (

@@ -101,6 +101,9 @@ body {
 .large-text {
   font-size: 1.65rem;
 }
+.tiny-text {
+  font-size: .7rem;
+}
 button {
   background-color: #FF8400 !important;
 }
@@ -125,8 +128,15 @@ input, select, option {
 .w-50 {
   width: 50%;
 }
+.w-70 {
+  width: 70%;
+}
 .w-100 {
   width: 100%;
+}
+
+.v-hidden {
+  visibility: hidden;
 }
 
 @media (prefers-color-scheme: dark) {

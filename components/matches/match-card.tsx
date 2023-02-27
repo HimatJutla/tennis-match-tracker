@@ -9,8 +9,8 @@ const MatchCardStyling = styled.div`
     background-color: #FFB400;
     border-radius: 8%;
     .container-block {
-        min-height: 45vh;
-        max-height: 45vh;
+        min-height: 50vh;
+        max-height: 50vh;
     }
     .players-block {
         border-bottom: 2px solid #5A8100;

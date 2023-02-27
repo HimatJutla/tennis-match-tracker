@@ -7,4 +7,5 @@ export interface PlayerListComponentPropsInterface {
     passCurrentPlayerToParent?: Function;
     playerNumber?: number;
     defaultPlayer?: Player;
+    blackTextLabel?: boolean;
 }

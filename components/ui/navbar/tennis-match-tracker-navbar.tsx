@@ -10,7 +10,7 @@ const NavbarComponentStyling = styled.div`
   font-size: .875rem;
 color: white;
   .navbar-items-container {
-    width: 40%;
+    width: 48%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -29,13 +29,16 @@ function Navbar() {
                     <Link href="/match/new">ADD MATCH</Link>
                 </div>
                 <div>
-                <   Link href="/player/new">CREATE PLAYER</Link>
+                <Link href="/player/new">CREATE PLAYER</Link>
                 </div>
                 <div>
                     <Link href="/head-to-head">HEAD TO HEAD</Link>
                 </div>
                 <div>
                     <Link href="/find-match">FIND MATCH</Link>
+                </div>
+                <div>
+                    <Link href="/find-players">FIND PLAYERS</Link>
                 </div>
             </div>
         </NavbarComponentStyling>
